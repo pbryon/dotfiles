@@ -11,7 +11,7 @@ set showmatch
 set smartcase
 set hlsearch
 set incsearch
-set noerrorbells
+set visualbell
 colors molokai
 set t_Co=256
 
