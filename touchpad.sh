@@ -8,13 +8,14 @@
 touchpad=$(xinput list | grep -iPo 'touchpad.*id=\K\d+')
 trackpoint=$(xinput list | grep -iPo 'trackpoint.*id=\K\d+')
 mouse="razer"
-
+on="0"
+off="1"
 ## Run every second
 while :
 do
     ## Disable the touchpad if there is a mouse connected
     ## and enable it if there is none.
-    xinput list | grep -iq $mouse &&  xinput disable "$touchpad" || xinput enable "$touchpad" 
+    xinput list | grep -iq $mouse &&  xinput set-prop $touchpad "Synaptics Off" $off || xinput set-prop $touchpad "Synaptics Off" $on
     
     ## Always disable trackpoint:
     xinput disable "$trackpoint" 
