@@ -38,12 +38,15 @@ yellow="\e[38;5;184m"
 blue="\e[38;5;14m"
 host="${blue}$(uname -n)$reset"
 CURDIR='$(dir_or_home)'
-PS1="$CURDIR\$(current_git_branch)$ "
+PS1="\[$CURDIR\$(current_git_branch)\]$ "
 drive=/media/jos/Data
 export REPO=$drive/experimental
 export GITDIR=$drive/git
 alias repo=goto_repo
 alias gitdir="cd $GITDIR"
+alias home="cd $HOME"
 alias q=exit
 alias ll="ls -la"
 complete -F complete_repo repo
+if [ $TILIX_ID ] || [ $VTE_VERSION ] ; then source /etc/profile.d/vte.sh; fi # Ubuntu Budgie END
+
