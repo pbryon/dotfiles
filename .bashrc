@@ -1,5 +1,7 @@
 function goto_repo {
     cd "$REPO/$1"
+    echo "Running git --fetch..."
+    `git fetch`
 }
 
 function complete_repo {
@@ -11,13 +13,19 @@ function complete_repo {
 function current_git_branch {
     branch=$(git branch 2>/dev/null | grep '^*' | colrm 1 2)
     if [ $branch ]; then
-        echo -e " ${bold}${green}[${branch}]${reset}"
+        status=$(git status | sed -n 's/.*\(behind\|ahead\).*/\1/p')
+        status_str=""
+        if [ $status ]; then
+            status_str="${blue}(${status})"
+        fi
+        echo -e "${bold}${status_str} ${green}[${branch}]${reset}"
     fi
 }
 
 function dir_or_home {
      repo_relative=${PWD##$REPO}
      home_relative=${PWD##$HOME}
+     drive_relative=${PWD##$drive}
      if [[ $home_relative != $PWD ]]; then
         echo -e ${bold}${yellow}HOME${reset}${home_relative}@$host
      elif [[ $repo_relative != $PWD ]]; then
@@ -26,6 +34,8 @@ function dir_or_home {
         else
             echo -e ${bold}${yellow}REPO${reset}@$host
         fi
+     elif [[ $drive_relative != $PWD ]]; then
+        echo "Data$drive_relative"
      else
         echo $PWD
      fi
@@ -45,6 +55,7 @@ export GITDIR=$drive/git
 alias repo=goto_repo
 alias gitdir="cd $GITDIR"
 alias home="cd $HOME"
+alias data="cd $drive"
 alias q=exit
 alias ll="ls -la"
 complete -F complete_repo repo
