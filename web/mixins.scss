@@ -1,0 +1,40 @@
+@import "./variables";
+
+@mixin flex( $direction, $wrap : wrap, $horizontal: center, $vertical: center ) {
+  display: flex;
+  flex-direction: $direction;
+  flex-wrap: $wrap;
+  justify-items: $vertical;
+  justify-content: $horizontal;
+}
+
+@mixin shadow ( $color: $color-shadow, $offset-x: 5px, $offset-y: 5px, $blur-radius: 5px) {
+  box-shadow: $offset-x $offset-y $blur-radius $color ;
+  position: relative;
+  z-index: 1;
+}
+
+@mixin fixed ( $width ) {
+  box-sizing: border-box;
+  width: $width;
+  min-width: $width;
+  max-width: $width;
+  display: inline-block;
+}
+
+@mixin form-control( $border: $color-button-border ) {
+  padding: 0 $margin-normal;
+  border: 1px solid $border;
+  @include shadow($color-shadow, 1px, 1px, 2px);
+  border-radius: $margin-small;
+  line-height: $line-height-fixed;
+}
+
+@mixin form-button( $background: $color-button, $foreground: $color-fg, $border: $color-button-border ) {
+  @include form-control($border);
+  background-color: $background;
+  color: $foreground;
+  margin-right: $margin-small;
+  cursor: pointer;
+  text-align: center;
+}

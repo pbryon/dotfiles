@@ -1,0 +1,45 @@
+/* fonts */
+$font-title: Bookman;
+$font-normal: Verdana;
+
+/* font sizes */
+$font-size-normal: 14px;
+$font-size-title: 2em;
+$font-size-subtitle: 1.5em;
+
+/* spacing */
+$margin-normal: 8px;
+$margin-triple: 3 * $margin-normal;
+$margin-small: 0.5 * $margin-normal;
+
+/* line heights */
+$line-height-fixed: 24px;
+$line-height-relative: 1.7em;
+
+/* colors */
+$color-bg: #fafafa;
+$color-fg: #37474f;
+
+$color-tab-border: #263238;
+$color-tab-bg: $color-fg;
+$color-tab-fg: #eceff1;
+$color-tab-icon: #fcf3cf;
+
+$color-label: #f8c471;
+
+$color-active: #d68910;
+
+$color-invisible-dark: #2471a3;
+$color-invisible-light: #a9cce3;
+
+$color-shadow: #abb2b9;
+
+$color-row-odd: #cfd8dc;
+$color-row-even: $color-tab-fg;
+$color-row-hover: $color-invisible-light;
+$color-toolbar: #fef9e7;
+
+$color-button: $color-label;
+$color-button-border: #dc7633;
+
+$tab-border: 1px solid $color-tab-border;
