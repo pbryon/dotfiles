@@ -52,6 +52,7 @@ PS1="\[$CURDIR\$(current_git_branch)\]$ "
 drive=/media/jos/Data
 export REPO=$drive/experimental
 export GITDIR=$drive/git
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
 alias repo=goto_repo
 alias gitdir="cd $GITDIR"
 alias home="cd $HOME"
