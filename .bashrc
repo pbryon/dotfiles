@@ -59,6 +59,7 @@ alias home="cd $HOME"
 alias data="cd $drive"
 alias q=exit
 alias ll="ls -la"
+alias gs="git fetch && git status"
 complete -F complete_repo repo
 if [ $TILIX_ID ] || [ $VTE_VERSION ] ; then source /etc/profile.d/vte.sh; fi # Ubuntu Budgie END
 
