@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 ## Get the touchpad id. The -P means perl regular expressions (for \K)
-## the -i makes it case insensitive (better portability) and the -o
-## means print only the matched portion. The \K discards anything matched
-## before it so this command will print the numeric id only.
+## the -i makes it case insensitive (better portability)
+## and the -o means print only the matched portion.
+## The \K discards anything matched before it so this command will print the numeric id only.
 
 touchpad=$(xinput list | grep -iPo 'touchpad.*id=\K\d+')
 trackpoint=$(xinput list | grep -iPo 'trackpoint.*id=\K\d+')
