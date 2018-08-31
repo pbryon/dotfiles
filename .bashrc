@@ -1,7 +1,29 @@
+function read_config {
+    file="$HOME/.bashrc.conf"
+    OLD_IFS="$IFS"
+    IFS=$'\n'
+    if [ ! -e "$file" ]; then
+        echo No .bashrc.conf!
+        return
+    fi
+    for line in `cat $file`; do
+        if [[ "$line" =~ ^## ]]; then
+            continue
+        elif [[ "$line" =~ ^REPO:[[:space:]]*(.+) ]]; then
+            export REPO=${BASH_REMATCH[1]};
+        elif [[ "$line" =~ ^GIT:[[:space:]]*(.+) ]]; then
+            export GITDIR=${BASH_REMATCH[1]};
+        fi
+    done
+    IFS=${OLD_IFS}
+}
+
 function goto_repo {
     cd "$REPO/$1"
-    echo "Running git --fetch..."
-    `git fetch`
+    if [ "$2" ]; then
+        echo "Running git $2..."
+        git $2
+    fi
 }
 
 function complete_repo {
@@ -25,7 +47,6 @@ function current_git_branch {
 function dir_or_home {
      repo_relative=${PWD##$REPO}
      home_relative=${PWD##$HOME}
-     drive_relative=${PWD##$drive}
      if [[ $home_relative != $PWD ]]; then
         echo -e ${bold}${yellow}HOME${reset}${home_relative}@$host
      elif [[ $repo_relative != $PWD ]]; then
@@ -34,13 +55,12 @@ function dir_or_home {
         else
             echo -e ${bold}${yellow}REPO${reset}@$host
         fi
-     elif [[ $drive_relative != $PWD ]]; then
-        echo "Data$drive_relative"
-     else
+    else
         echo $PWD
      fi
 }
 
+read_config
 bold="\e[1m"
 reset="\e[0m"
 green="\e[38;5;46m"
@@ -49,10 +69,8 @@ blue="\e[38;5;14m"
 host="${blue}$(uname -n)$reset"
 CURDIR='$(dir_or_home)'
 PS1="\[$CURDIR\$(current_git_branch)\]$ "
-drive=/media/jos/Data
-export REPO=$drive/experimental
-export GITDIR=$drive/git
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
+export EDITOR=vim
 alias repo=goto_repo
 alias gitdir="cd $GITDIR"
 alias home="cd $HOME"
