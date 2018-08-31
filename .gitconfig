@@ -1,10 +1,10 @@
 [user]
 	email = bryonpieter@gmail.com
 	name = Pieter Bryon
-	excludesfile = C:/Users/de_jo/.gitignore
+	excludesfile = /mnt/c/Users/de_jo/.gitignore
 [core]
 	autocrlf = input
-	excludesfile = C:/Users/de_jo/.gitignore
+	excludesfile = /mnt/c/Users/de_jo/.gitignore
 	safecrlf = false
 [log]
     abbrevCommit=true
@@ -12,3 +12,7 @@
     showUntrackedFiles=all
 [alias]
     latest = log -n 1
+[push]
+	default = simple
+[commit]
+	verbose = true
