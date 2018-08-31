@@ -77,6 +77,8 @@ alias home="cd $HOME"
 alias data="cd $drive"
 alias q=exit
 alias ll="ls -la"
+alias gaa="git add --all"
+alias gac="git add --all && git commit"
 alias gs="git status"
 alias gsf="git fetch && git status"
 complete -F complete_repo repo
