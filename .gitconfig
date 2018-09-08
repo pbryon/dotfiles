@@ -1,10 +1,10 @@
 [user]
 	email = bryonpieter@gmail.com
 	name = Pieter Bryon
-	excludesfile = /mnt/c/Users/de_jo/.gitignore
+	excludesfile = /home/.gitignore
 [core]
 	autocrlf = input
-	excludesfile = /mnt/c/Users/de_jo/.gitignore
+	excludesfile = /home/.gitignore
 	safecrlf = false
 [log]
     abbrevCommit=true
