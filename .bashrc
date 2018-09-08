@@ -60,6 +60,10 @@ dir_or_home () {
      fi
 }
 
+git_log () {
+    git log -n "${1:-1}"
+}
+
 read_config
 bold="\e[1m"
 reset="\e[0m"
@@ -78,9 +82,10 @@ alias data="cd $drive"
 alias q=exit
 alias ll="ls -la"
 alias gaa="git add --all"
-alias gac="git add --all && git commit"
+alias gac="git add --all && git commit -v"
 alias gs="git status"
 alias gsf="git fetch && git status"
+alias gl=git_log
 complete -F complete_repo repo
 if [ $TILIX_ID ] || [ $VTE_VERSION ] ; then source /etc/profile.d/vte.sh; fi # Ubuntu Budgie END
 
