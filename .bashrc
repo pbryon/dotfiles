@@ -1,4 +1,4 @@
-function read_config {
+read_config () {
     file="$HOME/.bashrc.conf"
     OLD_IFS="$IFS"
     IFS=$'\n'
@@ -18,7 +18,7 @@ function read_config {
     IFS=${OLD_IFS}
 }
 
-function goto_repo {
+goto_repo () {
     cd "$REPO/$1"
     if [ "$2" ]; then
         echo "Running git $2..."
@@ -26,13 +26,13 @@ function goto_repo {
     fi
 }
 
-function complete_repo {
+complete_repo () {
     local IFS=$'\n'
     tmp=( $(compgen -d -W "$(ls "$REPO")" -- "${COMP_WORDS[$COMP_CWORD]}" ))
     COMPREPLY=( "${tmp[@]// /\ }" )
 }
 
-function current_git_branch {
+current_git_branch () {
     branch=$(git branch 2>/dev/null | grep '^*' | colrm 1 2)
     if [ $branch ]; then
         status=$(git status | sed -n 's/.*\(behind\|ahead\).*/\1/p')
@@ -44,7 +44,7 @@ function current_git_branch {
     fi
 }
 
-function dir_or_home {
+dir_or_home () {
      repo_relative=${PWD##$REPO}
      home_relative=${PWD##$HOME}
      if [[ $home_relative != $PWD ]]; then
