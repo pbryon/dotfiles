@@ -65,14 +65,18 @@ git_log () {
 }
 
 read_config
-bold="\e[1m"
-reset="\e[0m"
-green="\e[38;5;46m"
-yellow="\e[38;5;184m"
-blue="\e[38;5;14m"
+# NOTE: using the following is less likely to create line wrapping problems:
+# \001 instead of \[
+# \002 instead of \]
+# \033 instead of \e
+bold="\001\033[1m\002"
+reset="\001\033[0m\002"
+green="\001\033[38;5;46m\002"
+yellow="\001\033[38;5;184m\002"
+blue="\001\033[38;5;14m\002"
 host="${blue}$(uname -n)$reset"
 CURDIR='$(dir_or_home)'
-PS1="\[$CURDIR\$(current_git_branch)\]$ "
+PS1="$CURDIR\$(current_git_branch)$ "
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export EDITOR=vim
 alias repo=goto_repo
