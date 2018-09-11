@@ -82,7 +82,6 @@ export EDITOR=vim
 alias repo=goto_repo
 alias gitdir="cd $GITDIR"
 alias home="cd $HOME"
-alias data="cd $drive"
 alias q=exit
 alias ll="ls -la"
 alias gaa="git add --all"
