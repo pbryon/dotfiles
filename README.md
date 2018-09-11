@@ -4,7 +4,7 @@ Yet another dotfiles repo. Mine might be different in the following aspects.
 
 ## .bashrc
 
-### read_config()_
+### read_config
 
 My ``.bashrc`` uses a config file (``.bashrc.conf``) to read config parameters:
 
