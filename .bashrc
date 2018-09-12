@@ -34,12 +34,15 @@ complete_repo () {
 
 current_git_branch () {
     branch=$(git branch 2>/dev/null | grep '^*' | colrm 1 2)
-    if [ $branch ]; then
+    if [ "$branch" ]; then
         status=$(git status | sed -n 's/.*\(behind\|ahead\).*/\1/p')
         status_str=""
-        if [ $status ]; then
+        if [ "$status" ]; then
             status_str="${blue}(${status})"
+        elif [[ "$branch" =~ \((HEAD detached.*)\) ]]; then
+            branch=${BASH_REMATCH[1]};
         fi
+
         echo -e "${bold}${status_str} ${green}[${branch}]${reset}"
     fi
 }
