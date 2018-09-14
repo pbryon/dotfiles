@@ -72,7 +72,11 @@ create_symlink() {
 if [ "$all" -o "$bash" ]; then
     echo
     echo Updating bash...
-    cp .bashrc.conf ~
+    conf_file=".bashrc.conf"
+    if [ ! -e "${HOME}/${conf_file}" ]; then
+        cp "$conf_file" "$HOME"
+        echo "${arrow} copied file: ${conf_file}"
+    fi
     create_symlink ".bashrc"
     echo "$arrow please reload your .bashrc"
 fi

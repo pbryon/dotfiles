@@ -13,6 +13,8 @@ read_config () {
             export REPO=${BASH_REMATCH[1]};
         elif [[ "$line" =~ ^GIT:[[:space:]]*(.+) ]]; then
             export GITDIR=${BASH_REMATCH[1]};
+        elif [[ "$line" =~ ^SCHOOL:[[:space:]]*(.+) ]]; then
+            export SCHOOL=${BASH_REMATCH[1]};
         fi
     done
     IFS=${OLD_IFS}
@@ -85,6 +87,7 @@ export EDITOR=vim
 alias repo=goto_repo
 alias gitdir="cd $GITDIR"
 alias home="cd $HOME"
+alias school="cd $SCHOOL"
 alias q=exit
 alias ll="ls -la"
 alias gaa="git add --all"
