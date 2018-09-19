@@ -1,5 +1,5 @@
 read_config () {
-    file="$HOME/.bashrc.conf"
+    local file="$HOME/.bashrc.conf"
     OLD_IFS="$IFS"
     IFS=$'\n'
     if [ ! -e "$file" ]; then
@@ -30,15 +30,15 @@ goto_repo () {
 
 complete_repo () {
     local IFS=$'\n'
-    tmp=( $(compgen -d -W "$(ls "$REPO")" -- "${COMP_WORDS[$COMP_CWORD]}" ))
+    local tmp=( $(compgen -d -W "$(ls "$REPO")" -- "${COMP_WORDS[$COMP_CWORD]}" ))
     COMPREPLY=( "${tmp[@]// /\ }" )
 }
 
 current_git_branch () {
-    branch=$(git branch 2>/dev/null | grep '^*' | colrm 1 2)
+    local branch=$(git branch 2>/dev/null | grep '^*' | colrm 1 2)
     if [ "$branch" ]; then
         status=$(git status | sed -n 's/.*\(behind\|ahead\).*/\1/p')
-        status_str=""
+        local status_str=""
         if [ "$status" ]; then
             status_str="${blue}(${status})"
         elif [[ "$branch" =~ \((HEAD detached.*)\) ]]; then
@@ -50,8 +50,8 @@ current_git_branch () {
 }
 
 dir_or_home () {
-     repo_relative=${PWD##$REPO}
-     home_relative=${PWD##$HOME}
+     local repo_relative=${PWD##$REPO}
+     local home_relative=${PWD##$HOME}
      if [[ $home_relative != $PWD ]]; then
         echo -e ${bold}${yellow}HOME${reset}${home_relative}@$host
      elif [[ $repo_relative != $PWD ]]; then
@@ -67,6 +67,22 @@ dir_or_home () {
 
 git_log () {
     git log -n "${1:-1}"
+}
+
+pull-all () {
+    for project in ./**; do
+        if [ ! -d $project ]; then
+            continue;
+        fi
+        cd $project
+        local branch=$(git branch 2>/dev/null)
+        if [ -d ".git" -a "$branch" ]; then
+            echo
+            echo "> pulling '${project##./}'..."
+            git pull
+        fi
+        cd ..
+    done
 }
 
 read_config
