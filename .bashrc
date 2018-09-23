@@ -66,7 +66,7 @@ dir_or_home () {
 }
 
 git_log () {
-    git log -n "${1:-1}"
+    git log -n "${1:-10}"
 }
 
 pull-all () {
