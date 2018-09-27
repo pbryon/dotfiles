@@ -69,7 +69,7 @@ git_log () {
     git log -n "${1:-10}"
 }
 
-pull-all () {
+gitall () {
     for project in ./**; do
         if [ ! -d $project ]; then
             continue;
@@ -78,8 +78,8 @@ pull-all () {
         local branch=$(git branch 2>/dev/null)
         if [ -d ".git" -a "$branch" ]; then
             echo
-            echo "> pulling '${project##./}'..."
-            git pull
+            echo "> repo '${project##./}'..."
+            git "$@" 
         fi
         cd ..
     done
@@ -111,6 +111,7 @@ alias gac="git add --all && git commit -v"
 alias gs="git status"
 alias gsf="git fetch && git status"
 alias gl=git_log
+alias pullall="gitall pull"
 complete -F complete_repo repo
 if [ $TILIX_ID ] || [ $VTE_VERSION ] ; then source /etc/profile.d/vte.sh; fi # Ubuntu Budgie END
 
