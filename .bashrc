@@ -103,7 +103,7 @@ export EDITOR=vim
 alias repo=goto_repo
 alias gitdir="cd $GITDIR"
 alias home="cd $HOME"
-alias school="cd $SCHOOL"
+alias school="cd ${SCHOOL:-$PWD}"
 alias q=exit
 alias ll="ls -la"
 alias gaa="git add --all"
@@ -114,4 +114,3 @@ alias gl=git_log
 alias pullall="gitall pull"
 complete -F complete_repo repo
 if [ $TILIX_ID ] || [ $VTE_VERSION ] ; then source /etc/profile.d/vte.sh; fi # Ubuntu Budgie END
-
