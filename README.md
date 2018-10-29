@@ -35,6 +35,23 @@ If you want to use the repo alias without ``read_config()``, add the following l
 
 and remove the ``read_config`` line.
 
+### git functions
+
+#### git_log()
+
+Passes the first argument to ``git log -n ``
+
+Default arg: ``10``
+
+#### gitall()
+
+Runs ``git $@`` on all subdirectories that are git repos.
+
+Checks whether each directory is a git repo by:
+
+* Presence of .git directory
+* Current git branch
+
 ### other aliases
 
 I use the following aliases:
@@ -45,9 +62,10 @@ I use the following aliases:
 | gitdir | ``cd $GITDIR`` (see [read_config()](#read_config)) |
 | gaa | ``git add --all`` |
 | gac | ``git add --all && git commit -v`` |
+| gl | ``git_log()`` function (above) |
 | gs | ``git status`` |
 | gsf | ``git fetch && git status`` |
-| gl | ``git_log()`` function, which passes the first argument to ``git log -n``. Default to ``10`` if left blank |
+| pullall | Runs ``gitall pull`` |
 | q | ``exit`` |
 
 ## Rprofile.site
