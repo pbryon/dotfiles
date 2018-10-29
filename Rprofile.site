@@ -1,0 +1,64 @@
+# Things you might want to change
+
+# options(papersize="a4")
+# options(editor="notepad")
+# options(pager="internal")
+
+# set the default help type
+# options(help_type="text")
+  options(help_type="html")
+
+# set a site library
+# .Library.site <- file.path(chartr("\\", "/", R.home()), "site-library")
+
+# set a CRAN mirror
+# local({r <- getOption("repos")
+#       r["CRAN"] <- "http://my.local.cran"
+#       options(repos=r)})
+
+# Give a fortune cookie, but only to interactive sessions
+# (This would need the fortunes package to be installed.)
+#  if (interactive()) 
+#    fortunes::fortune()
+
+# Copy this to R_HOME
+# That directory can be found with:
+#   System.getenv("R_HOME")
+
+## Own additions:
+
+repo="d:/experimental/data-science1"
+r.home = Sys.getenv("R_HOME")
+
+printf = function(format, arg1="", arg2="") {
+    message(sprintf(format, arg1, arg2))
+}
+
+print.file = function(file,max.length=500) {
+    printf("Contents of file '%s'", file)
+    cat(readChar(file, max.length))
+}
+
+cd = function (directory="ex") {
+    path=sprintf("%s/%s", repo, directory)
+	setwd(path)
+    printf("Working directory now: %s", path)
+    printf("Files:")
+    list.files()
+}
+
+profile.file = function() {
+    r.home = Sys.getenv("R_HOME")
+    sprintf("%s/etc/Rprofile.site", r.home)
+}
+
+profile.open = function () {
+    shell.exec(profile.file())
+}
+
+profile.copy = function () {
+    file.copy(profile.file(), repo, overwrite=T)
+    printf("Profile copied.")
+}
+
+cd()
