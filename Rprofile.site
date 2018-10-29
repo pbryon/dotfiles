@@ -35,13 +35,15 @@ printf = function(format, arg1="", arg2="") {
 }
 
 print.file = function(file,max.length=500) {
+    if(max.length="all")
+        max.length=1e5
     printf("Contents of file '%s'", file)
     cat(readChar(file, max.length))
 }
 
 cd = function (directory="ex") {
     path=sprintf("%s/%s", repo, directory)
-	setwd(path)
+    setwd(path)
     printf("Working directory now: %s", path)
     printf("Files:")
     list.files()
