@@ -21,11 +21,11 @@
 #  if (interactive()) 
 #    fortunes::fortune()
 
+## Own additions:
+
 # Copy this to R_HOME
 # That directory can be found with:
 #   System.getenv("R_HOME")
-
-## Own additions:
 
 repo="d:/experimental/data-science1"
 r.home = Sys.getenv("R_HOME")
@@ -34,11 +34,11 @@ printf = function(format, arg1="", arg2="") {
     message(sprintf(format, arg1, arg2))
 }
 
-print.file = function(file,max.length=500) {
-    if(max.length=="all")
-        max.length=1e5
+print.file = function(file,max.lines=10) {
+    if(max.lines=="all")
+        max.lines=-1L
     printf("Contents of file '%s'", file)
-    cat(readChar(file, max.length))
+    cat(readLines(con=file,encoding="UTF-8",n=max.lines),sep="\n")
 }
 
 cd = function (directory="ex") {
