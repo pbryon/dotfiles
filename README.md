@@ -50,7 +50,7 @@ I use the following aliases:
 | gl | ``git_log()`` function, which passes the first argument to ``git log -n``. Default to ``10`` if left blank |
 | q | ``exit`` |
 
-# Rprofile.site
+## Rprofile.site
 
 The profile loaded for R Studio.
 
