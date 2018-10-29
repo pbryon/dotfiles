@@ -63,4 +63,18 @@ profile.copy = function () {
     printf("Profile copied.")
 }
 
+freq.table = function(values,frequencies) {
+    index = 0
+    output=c()
+    for( x in c(1:length(values))) {
+        freq=frequencies[x]
+        value=values[x]
+        for(i in c(1:freq)) {
+            index = index + 1
+            output[index] = value
+        }
+    }
+    return(output)
+}
+
 cd()
