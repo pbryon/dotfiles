@@ -47,8 +47,12 @@ I use the following aliases:
 | gac | ``git add --all && git commit -v`` |
 | gs | ``git status`` |
 | gsf | ``git fetch && git status`` |
-| gl | ``git_log()`` function, which passes the first argument to ``git log -n`` |
+| gl | ``git_log()`` function, which passes the first argument to ``git log -n``. Default to ``10`` if left blank |
 | q | ``exit`` |
+
+# Rprofile.site
+
+The profile loaded for R Studio.
 
 ## Scripts
 
