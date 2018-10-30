@@ -30,8 +30,8 @@
 repo="d:/experimental/data-science1"
 r.home = Sys.getenv("R_HOME")
 
-printf = function(format, arg1="", arg2="") {
-    message(sprintf(format, arg1, arg2))
+printf = function(format, ...) {
+    message(sprintf(format, ...))
 }
 
 print.file = function(file,max.lines=10) {
