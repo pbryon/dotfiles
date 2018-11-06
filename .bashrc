@@ -35,7 +35,7 @@ complete_repo () {
 }
 
 current_git_branch () {
-    local branch=$(git branch 2>/dev/null | grep '^*' | colrm 1 2)
+    local branch=$(git branch 2>/dev/null | grep '^*' | sed 's/^* //')
     if [ "$branch" ]; then
         status=$(git status | sed -n 's/.*\(behind\|ahead\).*/\1/p')
         local status_str=""
