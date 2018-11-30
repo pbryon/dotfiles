@@ -6,7 +6,7 @@
 	autocrlf = input
 	eol = input
 	excludesfile = /home/.gitignore
-	safecrlf = true
+	safecrlf = false
 [log]
     abbrevCommit=true
 [status]
