@@ -72,6 +72,10 @@ I use the following aliases:
 
 The profile loaded for R Studio.
 
+## Git hooks
+
+These can be found in the ``git_hooks`` folder and have a first line comment describing their purpose.
+
 ## Scripts
 
 ### touchpad.sh

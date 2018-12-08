@@ -1,4 +1,5 @@
 #!/bin/bash
+## dotnet build pre-commit hook
 extensions="\.(cs|csproj|sln)$"
 files=$(git diff-index --cached --name-only --diff-filter=ACMR HEAD | grep -P $extensions)
 if [ ${#files} -eq 0 ]; then
