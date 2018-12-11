@@ -1,5 +1,5 @@
 #!/bin/bash
-## dotnet build pre-commit hook
+# dotnet build hook
 extensions="\.(cs|csproj|sln)$"
 files=$(git diff-index --cached --name-only --diff-filter=ACMR HEAD | grep -P $extensions)
 if [ ${#files} -eq 0 ]; then
@@ -14,3 +14,4 @@ dotnet --help >/dev/null || exit 1
 
 project="Nomen.sln"
 dotnet build --verbosity quiet $project
+dotnet clean --verbosity quiet $project
