@@ -13,5 +13,12 @@ which dotnet >/dev/null || (echo $error >&2 && exit 1)
 dotnet --help >/dev/null || exit 1
 
 project="Nomen.sln"
+echo "> Running dotnet build..."
 dotnet build --verbosity quiet $project
+error=0
+if [ $? -ne 0 ]; then
+    error=1
+fi
+echo "> Running dotnet clean..."
 dotnet clean --verbosity quiet $project
+exit $error
