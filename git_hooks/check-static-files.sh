@@ -1,4 +1,3 @@
-#!/bin/bash
 # pre-commit hook checking static files
 files=$(git diff-index --cached --name-only --diff-filter=ACMR HEAD | grep project)
 error=0

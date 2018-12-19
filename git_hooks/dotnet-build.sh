@@ -1,4 +1,3 @@
-#!/bin/bash
 # dotnet build hook
 extensions="\.(cs|csproj|sln)$"
 files=$(git diff-index --cached --name-only --diff-filter=ACMR HEAD | grep -P $extensions)

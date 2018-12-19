@@ -76,6 +76,8 @@ The profile loaded for R Studio.
 
 These can be found in the ``git_hooks`` folder and have a first line comment describing their purpose.
 
+They purposefully don't have shebangs, so they'll work in Visual Studio
+
 ## Scripts
 
 ### touchpad.sh

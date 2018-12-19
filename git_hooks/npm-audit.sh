@@ -1,4 +1,3 @@
-#!/bin/bash
 # npm audit hook
 frontend="src/Nomen.Presentation.Web"
 echo "> Running npm audit..."
