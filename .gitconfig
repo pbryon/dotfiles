@@ -4,7 +4,6 @@
 	excludesfile = /home/.gitignore
 [core]
 	autocrlf = input
-	eol = input
 	excludesfile = /home/.gitignore
 	safecrlf = false
 [log]
@@ -17,3 +16,5 @@
 	default = simple
 [commit]
 	verbose = true
+[fetch]
+	prune = true
