@@ -114,3 +114,5 @@ alias gl=git_log
 alias pullall="gitall pull"
 complete -F complete_repo repo
 if [ $TILIX_ID ] || [ $VTE_VERSION ] ; then source /etc/profile.d/vte.sh; fi # Ubuntu Budgie END
+alias todo="cat $REPO/kdg/TODO.md | grep -v x | head -n 20"
+alias schedule="cat $REPO/kdg/P3.md | head -n 11"
