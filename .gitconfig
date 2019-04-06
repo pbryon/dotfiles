@@ -12,6 +12,9 @@
     showUntrackedFiles=all
 [alias]
     latest = log -n 1
+    skipped = ! git ls-files -v . | grep ^S
+    skip = update-index --skip-worktree
+    unskip = update-index --no-skip-worktree
 [push]
 	default = simple
 [commit]
