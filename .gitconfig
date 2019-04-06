@@ -11,6 +11,8 @@
 [status]
     showUntrackedFiles=all
 [alias]
+    ahead = rev-list --count HEAD ^master
+    behind = rev-list --count master ^HEAD
     latest = log -n 1
     skipped = ! git ls-files -v . | grep ^S
     skip = update-index --skip-worktree
