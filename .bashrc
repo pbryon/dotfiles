@@ -116,3 +116,4 @@ complete -F complete_repo repo
 if [ $TILIX_ID ] || [ $VTE_VERSION ] ; then source /etc/profile.d/vte.sh; fi # Ubuntu Budgie END
 alias todo="cat $REPO/kdg/TODO.md | grep -v x | head -n 20"
 alias schedule="cat $REPO/kdg/P3.md | head -n 11"
+alias findcss="find -type f -name *.css -o -name *.scss | xargs grep"
