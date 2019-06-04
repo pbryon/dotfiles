@@ -140,7 +140,7 @@ alias q=exit
 alias ll="ls -la"
 
 # git-related:
-alias changes="git status -v | less -r"
+alias changes="git status -vv | less -r"
 alias findcss="find -type f -name *.css -o -name *.scss | xargs grep"
 alias $git_find=find_git_string
 alias gaa="git add --all"
