@@ -69,6 +69,14 @@ git_log () {
     git log -n "${1:-10}"
 }
 
+git_pretty_log() {
+    git log -n "${1:-200}" --pretty=format:"%h    %an    %s"
+}
+
+git_reflog() {
+    git reflog | head -n "${1:-10}"
+}
+
 gitall () {
     for project in ./**; do
         if [ ! -d $project ]; then
@@ -85,7 +93,27 @@ gitall () {
     done
 }
 
+git_find="gf"
+find_git_string () {
+    if [ -z "$1" ]; then
+        echo Usage:
+        echo "$git_find [extension] <pattern>"
+        echo
+        echo With no extension, it will search all files.
+        return 1
+    fi
+
+    # single argument, so no extension provided:
+    if [ -z "$2" ]; then
+        # grep -C = context
+        git ls-files | xargs grep -in "$1" -C 2 2>/dev/null
+        return 0
+    fi
+
+    git ls-files | grep "$1$" | xargs grep -in "$2" -C 2 2>/dev/null
+}
 read_config
+
 # NOTE: using the following is less likely to create line wrapping problems:
 # \001 instead of \[
 # \002 instead of \]
@@ -98,21 +126,36 @@ blue="\001\033[38;5;14m\002"
 host="${blue}$(uname -n)$reset"
 CURDIR='$(dir_or_home)'
 PS1="$CURDIR\$(current_git_branch)$ "
+
+# variables:
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export EDITOR=vim
+
+# directories:
 alias repo=goto_repo
 alias gitdir="cd $GITDIR"
 alias home="cd $HOME"
 alias school="cd ${SCHOOL:-$PWD}"
 alias q=exit
 alias ll="ls -la"
+
+# git-related:
+alias changes="git status -v | less -r"
+alias findcss="find -type f -name *.css -o -name *.scss | xargs grep"
+alias $git_find=find_git_string
 alias gaa="git add --all"
 alias gac="git add --all && git commit -v"
+alias gb="git branch -avv"
+alias gcp="git cherry-pick"
+alias gl=git_log
+alias glp=git_pretty_log
 alias gs="git status"
 alias gsf="git fetch && git status"
-alias gl=git_log
 alias pullall="gitall pull"
+alias refs=git_reflog
+alias team="grep -E 'Yordi|Jelle|Pieter|Stefaan|Bart'"
 complete -F complete_repo repo
+
 if [ $TILIX_ID ] || [ $VTE_VERSION ] ; then source /etc/profile.d/vte.sh; fi # Ubuntu Budgie END
 alias todo="cat $REPO/kdg/TODO.md | grep -v x | head -n 20"
 alias schedule="cat $REPO/kdg/P3.md | head -n 11"
