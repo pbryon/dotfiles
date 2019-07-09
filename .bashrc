@@ -100,17 +100,33 @@ find_git_string () {
         echo "$git_find [extension] <pattern>"
         echo
         echo With no extension, it will search all files.
+        echo
+        echo "If the pattern ends with a bang (!), it's case sensitive"
+        echo
         return 1
     fi
 
-    # single argument, so no extension provided:
-    if [ -z "$2" ]; then
-        # grep -C = context
-        git ls-files | xargs grep -in "$1" -C 2 2>/dev/null
-        return 0
+    extension=$1
+    pattern=$2
+    if [ -z "$pattern" ]; then
+        extension=""
+        pattern=$1
     fi
 
-    git ls-files | grep "$1$" | xargs grep -in "$2" -C 2 2>/dev/null
+    ignore_case="i"
+    if [[ "$pattern" =~ !$ ]]; then
+        # remove bang
+        pattern=${pattern%!}
+        ignore_case=""
+    fi
+
+    if [ -z "$extension" ]; then
+        # grep -C = context
+        git ls-files | xargs grep -"$ignore_case"n "$pattern" -C 2 2>/dev/null
+        return 0
+    fi
+    
+    git ls-files | grep "$extension$" | xargs grep -"$ignore_case"n "$pattern" -C 2 2>/dev/null
 }
 read_config
 
