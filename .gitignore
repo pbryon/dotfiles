@@ -1,3 +1,4 @@
 # temporary files:
 **/~*.*
 **/*.swp
+**/.vs
