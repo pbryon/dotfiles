@@ -36,7 +36,7 @@ create_symlink() {
     home_file="${HOME}/${1}"
     repo_file="${PWD}/${1}"
     confirm=false
-    
+
     if [ -L $home_file ]; then
         target=$(readlink $home_file)
         if [ "$target" = "$repo_file" ]; then
@@ -46,25 +46,37 @@ create_symlink() {
 
         echo "$home_file is a link but points to $target"
         confirm=true
-    elif [ -f $home_file ]; then
-        echo "$home_file exists"
+    elif [ -e $home_file ]; then
+        file_type="file"
+        if [ -d $home_file ]; then
+            file_type="directory"
+        fi
+        echo "$arrow $file_type $home_file exists"
         confirm=true
     fi
 
     if [ "$confirm" = true ]; then
-        read -p "Replace [yn]? " -n 1 reply
+        read -p "Replace with symlink [yn]? " -n 1 reply
         echo
         if [ "$reply" != "y" ]; then
             return
         fi
     fi
 
-    if [[ -e $home_file && ! -L $home_file ]]; then
+    if [[ -f $home_file && ! -L $home_file ]]; then
         rm "$home_file"
+    elif [[ -d $home_file && ! -L $home_file ]]; then
+        read -p "Force deletion [yn]? " -n 1 force_delete
+        echo
+        force="f"
+        if [ "$force_delete" != "y" ]; then
+            force=""
+        fi
+        rm "-r$force" "$home_file"
     fi
 
     ln -s $PWD/$1 ~/$1
-    if [ !"$!" ]; then
+    if [ "$!" = "0" ]; then
         echo "$arrow created symlink: ~/$1 -> $PWD/$1"
     fi
 }
@@ -78,6 +90,7 @@ if [ "$all" -o "$bash" ]; then
         echo "${arrow} copied file: ${conf_file}"
     fi
     create_symlink ".bashrc"
+    create_symlink ".bash"
     echo "$arrow please reload your .bashrc"
 fi
 
@@ -92,7 +105,6 @@ if [ "$all" -o "$vim" ]; then
     echo
     echo Updating vim...
     create_symlink ".vimrc"
-    echo "$arrow copying .vim directory..."
-    cp -r .vim ~
+    create_symlink ".vim"
 fi
 echo
