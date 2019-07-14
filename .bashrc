@@ -58,7 +58,5 @@ alias gcp="git cherry-pick"
 alias gs="git status"
 alias gsf="git fetch && git status"
 
-alias team="grep -E 'Yordi|Jelle|Pieter|Stefaan|Bart'"
-
 if [ $TILIX_ID ] || [ $VTE_VERSION ] ; then source /etc/profile.d/vte.sh; fi # Ubuntu Budgie END
 
