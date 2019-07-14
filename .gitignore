@@ -1,4 +1,9 @@
 # temporary files:
 **/~*.*
 **/*.swp
+
+# Visual studio files
 **/.vs
+
+# vim files
+.vim/.netrwhist
