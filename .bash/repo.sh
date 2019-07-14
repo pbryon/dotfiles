@@ -1,4 +1,5 @@
-script=$(basename $0)
+#!/bin/bash
+script=$BASH_SOURCE
 read_config () {
     local file="$BASHRC_CONFIG"
     OLD_IFS="$IFS"
