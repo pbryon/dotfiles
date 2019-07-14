@@ -10,8 +10,9 @@ My `.bashrc` uses a config file (`.bashrc.conf`) to read config parameters:
 
 * *REPO*: the directory you clone repositories to
 * *GIT*: the drectory used for local machine remotes
+* *SCHOOL*: the directory where I keep my school files
 
-These are then read in the `read_config()` function to export environment variables, which are in turn used for the `repo` alias and setting the PS1.
+These are then read in the `read_config()` functions in [repo.sh](#repo-alias) and [school.sh](#school) to export environment variables.
 
 ### load_import_files
 
@@ -100,7 +101,7 @@ Checks whether each directory is a git repo by:
 | glp   | `git log -n` with pretty format | 200 |
 | refs  | `git reflog | head -n` | 10 |
 
-#### school.sh
+#### school
 
 Probably of no use to you. Aliases for my school repo.
 
@@ -136,6 +137,8 @@ They purposefully don't have shebangs, so they'll work in Visual Studio
 ### touchpad.sh
 
 This script checks every second for a connected mouse (identified through the `$mouse` variable). When a mouse is connected, it disables the trackpad. When it's disconnected, it re-enables it.
+
+This script has only ever been tested on a Lenovo ThinkPad E570, so I don't know how portable it is beyond that.
 
 ### update.sh
 
