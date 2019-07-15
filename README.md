@@ -2,6 +2,19 @@
 
 Yet another dotfiles repo. Mine might be different in the following aspects.
 
+* [.bashrc](#bashrc)
+* [PS1](#ps1)
+* Bash aliases
+  * [repo alias](#repo-alias)
+  * [find git string](#find-git-string)
+  * [git-all](#gitall)
+  * [git-log](#git_log)
+  * [other aliases](#other-aliases)
+* [R profile](#rprofile.site)
+* [Git hooks](#git-hooks)
+* [Scripts](#scripts)
+* [Web files](#web-directory)
+
 ## .bashrc
 
 ### read_config
@@ -23,7 +36,7 @@ import_files=(ps1 repo git-log git-all find-git-string school)
 load_import_files
 ```
 
-Each of these sources can be found in the `.bash` subdirectory.
+Each of these sources can be found in the `bash` subdirectory.
 
 Please note that the above list of imports is subject to change.
 
