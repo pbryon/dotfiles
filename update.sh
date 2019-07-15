@@ -13,6 +13,8 @@ elif [[ $1 =~ git ]]; then
     git=true
 elif [[ $1 =~ vim ]]; then
     vim=true
+elif [[ $1 =~ (vs)?code ]]; then
+    code=true
 else
     echo
     echo "Usage: $script <category>"
@@ -106,5 +108,10 @@ if [ "$all" -o "$vim" ]; then
     echo Updating vim...
     create_symlink ".vimrc"
     create_symlink ".vim"
+fi
+
+if [ "$all" -o "$code" ]; then
+    echo
+    ./vscode/update-extensions.sh
 fi
 echo
