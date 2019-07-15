@@ -22,8 +22,10 @@ else
     echo "Categories (regex matched):"
     echo "  all     All of the below"
     echo "  bash    Update .bashrc and related files"
+    echo "  code    Update VSCode extensions"
     echo "  git     Update .gitconfig and .gitignore"
     echo "  vim     Update .vimrc and .vim directory"
+    echo "  vscode  As 'code'"
     echo
     exit 1
 fi
