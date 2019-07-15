@@ -13,6 +13,7 @@ Yet another dotfiles repo. Mine might be different in the following aspects.
 * [R profile](#rprofile.site)
 * [Git hooks](#git-hooks)
 * [Scripts](#scripts)
+* [VS Code](#vscode)
 * [Web files](#web-directory)
 
 ## .bashrc
@@ -164,6 +165,26 @@ This script can update categories of dotfiles - run the script without arguments
 For *rc files, it removes the old $HOME file and creates a symlink to the copy in the directory for this repository.
 
 If a file already exists or when it already is a symlink with a different target, you'll be prompted whether you want to remove the old file.
+
+## VSCode
+
+The `vscode` directory contains two scripts:
+
+### `save-extensions.sh`
+
+This script exports your currently installed VSCode extensions to a text file
+
+### `update-extensions.sh`
+
+This script installs/updates the extensions in the text file.
+
+It's also called by the `update.sh` script, provided you run it with one of:
+
+```
+./update.sh all
+./update.sh code
+./update.sh vscode
+```
 
 ## web directory
 
