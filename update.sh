@@ -92,7 +92,7 @@ if [ "$all" -o "$bash" ]; then
         echo "${arrow} copied file: ${conf_file}"
     fi
     create_symlink ".bashrc"
-    create_symlink ".bash"
+    create_symlink "bash"
     echo "$arrow please reload your .bashrc"
 fi
 
