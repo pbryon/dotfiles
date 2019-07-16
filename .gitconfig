@@ -12,6 +12,7 @@
     showUntrackedFiles=all
 [alias]
     ahead = rev-list --count HEAD ^master
+    back = ! git checkout - 2>/dev/null || echo No previous branch!
     behind = rev-list --count master ^HEAD
     latest = log -n 1
     delete = branch -d
