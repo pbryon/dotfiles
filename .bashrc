@@ -1,10 +1,9 @@
 load_import_files () {
     for file in ${import_files[@]}; do
-        path=bash
+        path="$(dirname $BASH_SOURCE)/bash"
         file=$file.sh
         if [ -f "$path/$file" ]; then
             . $path/$file
-            echo "-> loaded $file"
         else
             echo "-> missing source: $path/$file"
         fi
