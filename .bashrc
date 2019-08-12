@@ -13,7 +13,7 @@ load_import_files () {
 # used by repo.sh and school.sh
 export BASHRC_CONFIG="$HOME/.bashrc.conf"
 export BASHRC_CONFIG_SEPARATOR=":"
-import_files=(ps1 repo git-log git-all find-git-string school)
+import_files=(ps1 repo git-aliases git-log git-all find-git-string school)
 load_import_files
 
 # variables:
@@ -25,15 +25,6 @@ alias home="cd $HOME"
 
 alias q=exit
 alias ll="ls -la"
-
-# git-related:
-alias changes="git status -vv | less -r"
-alias gaa="git add --all"
-alias gac="git add --all && git commit -v"
-alias gb="git branch -avv"
-alias gcp="git cherry-pick"
-alias gs="git status"
-alias gsf="git fetch && git status"
 
 if [ $TILIX_ID ] || [ $VTE_VERSION ] ; then source /etc/profile.d/vte.sh; fi # Ubuntu Budgie END
 
