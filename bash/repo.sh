@@ -14,8 +14,6 @@ read_config () {
             continue
         elif [[ "$line" =~ ^REPO$sep[[:space:]]*(.+) ]]; then
             export REPO=${BASH_REMATCH[1]};
-        elif [[ "$line" =~ ^GIT$sep[[:space:]]*(.+) ]]; then
-            export GITDIR=${BASH_REMATCH[1]};
         fi
     done
     IFS=${OLD_IFS}
@@ -37,5 +35,4 @@ complete_repo () {
 
 read_config
 alias repo=goto_repo
-alias gitdir="cd $GITDIR"
 complete -F complete_repo repo
