@@ -7,9 +7,9 @@ Yet another dotfiles repo. Mine might be different in the following aspects.
 * Bash aliases
   * [repo alias](#repo-alias)
   * [find git string](#find-git-string)
-  * [git-all](#gitall)
-  * [git-log](#git_log)
-  * [other aliases](#other-aliases)
+  * [git aliases](#git-aliases)
+  * [gitall](#gitall)
+  * [git log](#git-log)
 * [R profile](#rprofile.site)
 * [Git hooks](#git-hooks)
 * [Scripts](#scripts)
@@ -61,7 +61,7 @@ The alias `repo` uses `goto_repo()` and `complete_repo()`. It can:
 
 It uses the `$REPO` environment variable set in [read_config()](#read_config).
 
-If you want to use the repo alias without `read_config()`, add the following line to the `.bashrc` before the `load_import_files` function call:
+If you want to use these aliases without using `read_config()`, add the following line to the `.bashrc` before the `load_import_files` function call:
 
 `export REPO=<directory to your repositories>`
 
@@ -93,19 +93,35 @@ Examples:
 | gf foo! | Looks for the case sensitive string "foo" |
 | gf cs foo | Looks for the case insensitive string in all `.cs` files |
 
+#### git aliases
+
+**Source**: `git-aliases.sh`
+
+Contains a bunch of shorthand git aliases:
+
+| Alias | Command |
+| --- | --- |
+| gaa | `git add --all` |
+| gac | `git add --all && git commit -v` |
+| gb | `git branch -avv` |
+| gcp | `git cherry-pick` |
+| gs | `git status` |
+| gsf | `git fetch && git status` |
+
 #### gitall()
 
 **Source**: `git-all.sh`
 
 Runs `git $@` on all subdirectories that are git repos.
 
+Also includes `pullall`, which runs `gitall pull`.
+
 Checks whether each directory is a git repo by:
 
 * Presence of .git directory
 * Current git branch
 
-
-#### git_log()
+#### git log()
 
 **Source**: `git-log.sh`
 
@@ -120,21 +136,6 @@ Checks whether each directory is a git repo by:
 Probably of no use to you. Aliases for my school repo.
 
 The aliases only get set when you've got a `$SCHOOL` variable in your `.bashrc.conf`
-
-### other aliases
-
-I use the following aliases:
-
-| Alias | Command |
-| --- | --- |
-| home | `cd $HOME` |
-| gitdir | `cd $GITDIR` (see [read_config()](#read_config)) |
-| gaa | `git add --all` |
-| gac | `git add --all && git commit -v` |
-| gs | `git status` |
-| gsf | `git fetch && git status` |
-| pullall | Runs `gitall pull` |
-| q | `exit` |
 
 ## Rprofile.site
 
