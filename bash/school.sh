@@ -19,6 +19,9 @@ if [ -z "$SCHOOL" ]; then
     return
 fi
 
+
 alias school="cd ${SCHOOL:-$PWD}"
 alias todo="cat $REPO/kdg/TODO.md | grep -v x | head -n 20"
-alias schedule="cat $REPO/kdg/P3.md | head -n 11"
+CURRENT_PERIOD=1
+local school_schedule="$REPO/kdg/P${CURRENT_PERIOD}.md" 
+alias schedule="cat $school_schedule 2>/dev/null || echo \"No schedule yet for P${CURRENT_PERIOD}\" | head -n 11" 
