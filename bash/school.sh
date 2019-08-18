@@ -8,6 +8,8 @@ read_config () {
             continue
         elif [[ "$line" =~ ^SCHOOL$sep[[:space:]]*(.+) ]]; then
             export SCHOOL=${BASH_REMATCH[1]};
+        elif [[ "$line" =~ ^SCHOOL_PERIOD$sep[[:space:]]*(.+) ]]; then
+            export CURRENT_SCHOOL_PERIOD=${BASH_REMATCH[1]};
         fi
     done
     IFS=${OLD_IFS}
@@ -19,9 +21,7 @@ if [ -z "$SCHOOL" ]; then
     return
 fi
 
-
 alias school="cd ${SCHOOL:-$PWD}"
 alias todo="cat $REPO/kdg/TODO.md | grep -v x | head -n 20"
-CURRENT_PERIOD=1
-local school_schedule="$REPO/kdg/P${CURRENT_PERIOD}.md" 
-alias schedule="cat $school_schedule 2>/dev/null || echo \"No schedule yet for P${CURRENT_PERIOD}\" | head -n 11" 
+local school_schedule="$REPO/kdg/P${CURRENT_SCHOOL_PERIOD}.md" 
+alias schedule="cat $school_schedule 2>/dev/null || echo \"No schedule yet for P${CURRENT_SCHOOL_PERIOD}\" | head -n 11" 
