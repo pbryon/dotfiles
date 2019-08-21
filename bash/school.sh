@@ -24,4 +24,4 @@ fi
 alias school="cd ${SCHOOL:-$PWD}"
 alias todo="cat $REPO/kdg/TODO.md | grep -v x | head -n 20"
 local school_schedule="$REPO/kdg/P${CURRENT_SCHOOL_PERIOD}.md" 
-alias schedule="cat $school_schedule 2>/dev/null || echo \"No schedule yet for P${CURRENT_SCHOOL_PERIOD}\" | head -n 11" 
+alias schedule="sed '/^$/q' $school_schedule 2>/dev/null || echo No schedule yet for P${CURRENT_SCHOOL_PERIOD}" 
