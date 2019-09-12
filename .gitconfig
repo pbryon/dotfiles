@@ -18,6 +18,7 @@
     behind = rev-list --count master ^HEAD
     latest = log -n 1
     delete = branch -d
+    dropremote = push origin --delete
     skipped = ! git ls-files -v . | grep ^S
     skip = update-index --skip-worktree
     unskip = update-index --no-skip-worktree
