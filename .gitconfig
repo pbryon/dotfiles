@@ -16,7 +16,7 @@
     ahead = rev-list --count HEAD ^master
     back = ! git checkout - 2>/dev/null || echo No previous branch!
     behind = rev-list --count master ^HEAD
-    latest = log -n 1
+    latest = ! git log -n 1 && git diff HEAD~ HEAD
     delete = branch -d
     dropremote = push origin --delete
     rename = branch -m
