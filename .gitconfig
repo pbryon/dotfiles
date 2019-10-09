@@ -16,14 +16,15 @@
     ahead = rev-list --count HEAD ^master
     back = ! git checkout - 2>/dev/null || echo No previous branch!
     behind = rev-list --count master ^HEAD
-    latest = ! git log -n 1 && git show HEAD
     delete = branch -d
     dropremote = push origin --delete
-    rename = branch -m
-    skipped = ! git ls-files -v . | grep ^S
-    skip = update-index --skip-worktree
-    unskip = update-index --no-skip-worktree
+    history = log -p --follow
+    latest = ! git log -n 1 && git show HEAD
     new = checkout -b
+    rename = branch -m
+    skip = update-index --skip-worktree
+    skipped = ! git ls-files -v . | grep ^S
+    unskip = update-index --no-skip-worktree
 [push]
 	default = simple
 [commit]
