@@ -15,6 +15,9 @@ set visualbell
 colors molokai
 set t_Co=256
 
+set diffopt+=iwhite
+set diffexpr=""
+
 " Easy window navigation
 map <C-h> <C-w>h
 map <C-j> <C-w>j
