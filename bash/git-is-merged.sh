@@ -1,26 +1,44 @@
 git_is_merged="gim"
 is_branch_merged () {
+    if [[ $1 == "debug" ]]; then
+       debug="yes"
+    else
+        debug=""
+    fi
     OLD_IFS="$IFS"
     IFS=$'\n'
 
-    branches=`git branch -a | grep remotes/origin`
+
+    log_branch_status Branch Commit Status
+    log_branch_status "------" "------" "------"
+
+    branches=$(git branch -a --color=never | grep remotes/origin)
     for branch in $branches; do
         if [[ $branch =~ master ]]; then
             continue
         fi
 
-        local latest_commit=`git log -n 1 --pretty=format:%h 2>/dev/null`
+        branch=$(echo -e "$branch" | tr -d '[:space:]')
+        commit_cmd="git log -n 1 --pretty=format:%h $branch"
+        if [ "$debug" ]; then
+            echo Command: $commit_cmd
+        fi
+
+        latest_commit=$(git log -n 1 --pretty=format:%h $branch)
+        if [ "$debug" ]; then
+            echo "Latest commit on $branch: $latest_commit"
+        fi
 
         if [ -z "$latest_commit" ]; then
             log_branch_status $branch "no commits on remote"
             continue
         fi
 
-        local any_commits=`git log origin/master | grep $latest_commit 2>/dev/null`
+        local any_commits=$(git log remotes/origin/master | grep $latest_commit)
         if [ -z "$any_commits" ]; then
-            log_branch_status $branch "not merged"
+            log_branch_status $branch $latest_commit "not merged"
         else
-            log_branch_status $branch "merged"
+            log_branch_status $branch $latest_commit "merged"
         fi
     done
 
@@ -28,7 +46,7 @@ is_branch_merged () {
 }
 
 log_branch_status() {
-    printf "%-80s  %s\n" $1 $2
+    printf "%-80s    %s    %s\n" $1 $2 ${3:-""}
 }
 
 
