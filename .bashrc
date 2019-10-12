@@ -13,7 +13,7 @@ load_import_files () {
 # used by repo.sh and school.sh
 export BASHRC_CONFIG="$HOME/.bashrc.conf"
 export BASHRC_CONFIG_SEPARATOR=":"
-import_files=(ps1 repo git-aliases git-log git-all find-git-string school)
+import_files=(ps1 repo git-aliases git-log git-all find-git-string git-is-merged school)
 load_import_files
 
 # variables:
