@@ -22,6 +22,7 @@
     latest = ! git log -n 1 && git show HEAD
     new = checkout -b
     rename = branch -m
+    resetfile = checkout origin/master
     skip = update-index --skip-worktree
     skipped = ! git ls-files -v . | grep ^S
     unskip = update-index --no-skip-worktree
