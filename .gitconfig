@@ -19,7 +19,7 @@
     delete = branch -d
     dropremote = push origin --delete
     history = log -p --follow
-    latest = ! git log -n 1 && git show HEAD
+    latest = show HEAD
     new = checkout -b
     rename = branch -m
     resetfile = checkout origin/master
