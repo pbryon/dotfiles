@@ -21,7 +21,17 @@ if [ -z "$SCHOOL" ]; then
     return
 fi
 
+print_schedule() {
+    local school_schedule="$REPO/kdg/P${CURRENT_SCHOOL_PERIOD}.md"
+    local no_schedule="No schedule yet for P${CURRENT_SCHOOL_PERIOD}"
+    local schedule_header="# Schedule"
+    local markdown_h1="# "
+    local then_print="{/.*/p}"
+    local delete_last_line='$d'
+    sed --quiet "/$schedule_header/,/^$markdown_h1/$then_print" $school_schedule 2>/dev/null | sed $delete_last_line || echo $no_schedule
+    echo
+}
+
 alias school="cd ${SCHOOL:-$PWD}"
 alias todo="cat $REPO/kdg/TODO.md | grep -v x | head -n 20"
-local school_schedule="$REPO/kdg/P${CURRENT_SCHOOL_PERIOD}.md" 
-alias schedule="sed '/^$/q' $school_schedule 2>/dev/null || echo No schedule yet for P${CURRENT_SCHOOL_PERIOD}" 
+alias schedule=print_schedule  
