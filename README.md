@@ -10,6 +10,7 @@ Yet another dotfiles repo. Mine might be different in the following aspects.
   * [git aliases](#git-aliases)
   * [gitall](#gitall)
   * [git log](#git-log)
+  * [git-reset-to](#git-reset-to)
 * [R profile](#rprofile.site)
 * [Git hooks](#git-hooks)
 * [Scripts](#scripts)
@@ -136,6 +137,13 @@ Checks whether each directory is a git repo by:
 **Source**: `git-reset-to.sh`
 
 Resets the current branch's HEAD to a given commit
+
+Usage:
+
+```
+$ grt
+Usage: grt <target commit>
+```
 
 #### school
 
