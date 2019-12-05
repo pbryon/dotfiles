@@ -130,7 +130,7 @@ Checks whether each directory is a git repo by:
 | ---   | ---   | --- |
 | gl    | `git log -n` | 10 |
 | glp   | `git log -n` with pretty format | 200 |
-| refs  | `git reflog | head -n` | 10 |
+| refs  | <code>git reflog &#124; head -n</code> | 10 |
 
 #### git reset to
 
