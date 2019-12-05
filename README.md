@@ -131,6 +131,12 @@ Checks whether each directory is a git repo by:
 | glp   | `git log -n` with pretty format | 200 |
 | refs  | `git reflog | head -n` | 10 |
 
+#### git reset to
+
+**Source**: `git-reset-to.sh`
+
+Resets the current branch's HEAD to a given commit
+
 #### school
 
 Probably of no use to you. Aliases for my school repo.
