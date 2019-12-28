@@ -8,8 +8,6 @@ read_config () {
             continue
         elif [[ "$line" =~ ^SCHOOL$sep[[:space:]]*(.+) ]]; then
             export SCHOOL=${BASH_REMATCH[1]};
-        elif [[ "$line" =~ ^SCHOOL_PERIOD$sep[[:space:]]*(.+) ]]; then
-            export CURRENT_SCHOOL_PERIOD=${BASH_REMATCH[1]};
         fi
     done
     IFS=${OLD_IFS}
@@ -22,8 +20,8 @@ if [ -z "$SCHOOL" ]; then
 fi
 
 print_schedule() {
-    local school_schedule="$REPO/kdg/P${CURRENT_SCHOOL_PERIOD}.md"
-    local no_schedule="No schedule yet for P${CURRENT_SCHOOL_PERIOD}"
+    local school_schedule="$REPO/kdg/SCHEDULE.md"
+    local no_schedule="No schedule found!"
     local schedule_header="# Schedule"
     local markdown_h1="# "
     local then_print="{/.*/p}"
