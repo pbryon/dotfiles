@@ -6,6 +6,7 @@ Yet another dotfiles repo. Mine might be different in the following aspects.
 * [PS1](#ps1)
 * Bash aliases
   * [repo alias](#repo-alias)
+  * [find file string](#find-file-string)
   * [find git string](#find-git-string)
   * [git aliases](#git-aliases)
   * [gitall](#gitall)
@@ -67,6 +68,32 @@ If you want to use these aliases without using `read_config()`, add the followin
 `export REPO=<directory to your repositories>`
 
 and remove the `read_config` line and/or function.
+
+#### find_file_string()
+
+**Source**: `find-file-string.sh`
+
+**Default alias**: ff (configurable in the source file)
+
+Finds a string in the current directory's files (based on `find . -type f`).
+
+Usage:
+
+```
+ff [extension] <pattern>
+
+With no extension, it will search all files.
+
+If the pattern ends with a bang (!), it's case sensitive
+```
+
+Examples:
+
+| Command | Description |
+| --- | --- |
+| ff foo | Looks for case insensitive string "foo" |
+| ff foo! | Looks for the case sensitive string "foo" |
+| ff cs foo | Looks for the case insensitive string in all `.cs` files |
 
 #### find_git_string()
 
