@@ -30,11 +30,19 @@ find_file_string () {
     format="'${PWD}'/'$directory_name'/'$filename'\n"
     if [ -z "$extension" ]; then
         # grep -C = context
-        find ./ -type f -printf $format | xargs grep -"$ignore_case"n "$pattern" -C 2 2>/dev/null
+        find ./ -type f -printf $format \
+        | xargs grep -"$ignore_case"n "$pattern" -C 2 2>/dev/null \
+        | grep -v "Binary file" \
+        | sed -e "s|${PWD}/||g"
+ 
         return 0
     fi
     
-     find ./ -type f -printf $format | grep "$extension'$" | xargs grep -"$ignore_case"n "$pattern" -C 2 2>/dev/null
+    find ./ -type f -printf $format \
+    | grep "$extension'$" \
+    | xargs grep -"$ignore_case"n "$pattern" -C 2 2>/dev/null \
+    | grep -v "Binary file" \
+    | sed -e "s|${PWD}/||g"
 }
 
 alias $file_find=find_file_string
