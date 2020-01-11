@@ -85,8 +85,8 @@ create_symlink() {
     fi
 }
 
+echo
 if [ "$all" -o "$bash" ]; then
-    echo
     echo Updating bash...
     conf_file=".bashrc.conf"
     if [ ! -e "${HOME}/${conf_file}" ]; then
@@ -99,21 +99,18 @@ if [ "$all" -o "$bash" ]; then
 fi
 
 if [ "$all" -o "$git" ]; then
-    echo
     echo Updating git...
     create_symlink ".gitconfig"
     create_symlink ".gitignore"
 fi
 
 if [ "$all" -o "$vim" ]; then
-    echo
     echo Updating vim...
     create_symlink ".vimrc"
     create_symlink ".vim"
 fi
 
 if [ "$all" -o "$code" ]; then
-    echo
     ./vscode/update-extensions.sh
 fi
 echo
