@@ -6,6 +6,7 @@ find_file_string () {
         echo
         echo With no extension, it will search all files.
         echo
+        echo "If the extension ends with a bang (!), it is excluded instead"
         echo "If the pattern ends with a bang (!), it's case sensitive"
         echo
         return 1
@@ -37,9 +38,16 @@ find_file_string () {
  
         return 0
     fi
-    
+   
+    exclude=""
+    if [[ "$extension" =~ !$ ]]; then
+        # remove bang
+        extension=${extension%!}
+        exclude="-v"
+    fi
+
     find ./ -type f -printf $format \
-    | grep "$extension'$" \
+    | grep "$exclude" "$extension'$" \
     | xargs grep -"$ignore_case"n "$pattern" -C 2 2>/dev/null \
     | grep -v "Binary file" \
     | sed -e "s|${PWD}/||g"

@@ -6,6 +6,7 @@ find_git_string () {
         echo
         echo With no extension, it will search all files.
         echo
+        echo "If the extension ends with a bang (!), it is excluded instead"
         echo "If the pattern ends with a bang (!), it's case sensitive"
         echo
         return 1
@@ -30,8 +31,18 @@ find_git_string () {
         git ls-files | xargs grep -"$ignore_case"n "$pattern" -C 2 2>/dev/null
         return 0
     fi
+
+    exclude=""
+    if [[ "$extension" =~ !$ ]]; then
+        # remove bang
+        extension=${extension%!}
+        exclude="-v"
+    fi
     
-    git ls-files | grep "$extension$" | xargs grep -"$ignore_case"n "$pattern" -C 2 2>/dev/null
+    git ls-files \
+    | grep "$exclude" "$extension$" \
+    | xargs grep -"$ignore_case"n "$pattern" -C 2 2>/dev/null \
+    | grep -v "Binary file"
 }
 
 alias $git_find=find_git_string
