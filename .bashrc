@@ -18,6 +18,7 @@ load_import_files
 
 # variables:
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
+export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
 export EDITOR=vim
 
 # directories:
