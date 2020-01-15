@@ -43,11 +43,11 @@ find_file_string () {
     if [[ "$extension" =~ !$ ]]; then
         # remove bang
         extension=${extension%!}
-        exclude="-v"
+        exclude="-v "
     fi
 
     find ./ -type f -printf $format \
-    | grep "$exclude" "$extension'$" \
+    | grep "${exclude}${extension}'$" \
     | xargs grep -"$ignore_case"n "$pattern" -C 2 2>/dev/null \
     | grep -v "Binary file" \
     | sed -e "s|${PWD}/||g"
