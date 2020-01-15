@@ -36,13 +36,16 @@ find_git_string () {
     if [[ "$extension" =~ !$ ]]; then
         # remove bang
         extension=${extension%!}
-        exclude="-v "
+        git ls-files \
+        | grep -v "$extension$" \
+        | xargs grep -"$ignore_case"n "$pattern" -C 2 2>/dev/null \
+        | grep -v "Binary file"
+    else
+        git ls-files \
+        | grep "${extension}$" \
+        | xargs grep -"$ignore_case"n "$pattern" -C 2 2>/dev/null \
+        | grep -v "Binary file"
     fi
-
-    git ls-files \
-    | grep "${exclude}${extension}$" \
-    | xargs grep -"$ignore_case"n "$pattern" -C 2 2>/dev/null \
-    | grep -v "Binary file"
 }
 
 alias $git_find=find_git_string
