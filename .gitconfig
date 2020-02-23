@@ -25,6 +25,7 @@
     resetfile = checkout origin/master
     skip = update-index --skip-worktree
     skipped = ! git ls-files -v . | grep ^S
+    squash = merge --squash
     unskip = update-index --no-skip-worktree
 [push]
 	default = simple
