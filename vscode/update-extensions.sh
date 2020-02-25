@@ -6,9 +6,10 @@ vscode_not_installed() {
     exit 1
 }
 
-command -v code >/dev/null || vscode_not_installed
-which code >/dev/null || vscode_not_installed
-code --help >/dev/null || vscode_not_installed
+cmd="code"
+command -v $cmd >/dev/null || vscode_not_installed
+which $cmd >/dev/null || vscode_not_installed
+$cmd --help >/dev/null || vscode_not_installed
 
 file="extensions.txt"
 path=$(dirname "$0")

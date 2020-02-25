@@ -1,0 +1,5 @@
+write-host "Installing FAKE CLI..."
+iex "& dotnet tool install -g fake-cli"
+write-host "Installing Paket..."
+iex "& dotnet tool install -g paket --add-source https://www.myget.org/F/paket-netcore-as-tool/api/v3/index.json"
+read-host -prompt "[Press enter]"
