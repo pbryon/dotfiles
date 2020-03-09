@@ -6,8 +6,8 @@ Yet another dotfiles repo. Mine might be different in the following aspects.
 * [PS1](#ps1)
 * Bash aliases
   * [repo alias](#repo-alias)
-  * [find file string](#find-file-string)
-  * [find git string](#find-git-string)
+  * [find file string](#find_file_string)
+  * [find git string](#find_git_string)
   * [git aliases](#git-aliases)
   * [gitall](#gitall)
   * [git log](#git-log)
