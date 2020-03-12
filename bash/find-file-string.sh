@@ -29,12 +29,15 @@ find_file_string () {
     directory_name="%h"
     filename="%f"
     format="'${PWD}'/'$directory_name'/'$filename'\n"
+    binary_file="Binary file"
+    remove_current_dir="s|'${PWD}'/||g"
+
     if [ -z "$extension" ]; then
         # grep -C = context
-        find ./ -type f -printf $format \
+        find . -type f -printf "$format" \
         | xargs grep -"$ignore_case"n "$pattern" -C 2 2>/dev/null \
-        | grep -v "Binary file" \
-        | sed -e "s|${PWD}/||g"
+        | grep -v "$binary_file" \
+        | sed -e "$remove_current_dir"
  
         return 0
     fi
@@ -43,17 +46,17 @@ find_file_string () {
     if [[ "$extension" =~ !$ ]]; then
         # remove bang
         extension=${extension%!}
-        find ./ -type f -printf $format \
+        find . -type f -printf "$format" \
         | grep -v "$extension'$" \
         | xargs grep -"$ignore_case"n "$pattern" -C 2 2>/dev/null \
-        | grep -v "Binary file" \
-        | sed -e "s|${PWD}/||g"
+        | grep -v "$binary_file" \
+        | sed -e "$remove_current_dir"
     else
-        find ./ -type f -printf $format \
+        find . -type f -printf "$format" \
         | grep "$extension'$" \
         | xargs grep -"$ignore_case"n "$pattern" -C 2 2>/dev/null \
-        | grep -v "Binary file" \
-        | sed -e "s|${PWD}/||g"
+        | grep -v "$binary_file" \
+        | sed -e "$remove_current_dir"
 
     fi
 }
