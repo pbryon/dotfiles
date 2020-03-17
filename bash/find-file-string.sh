@@ -30,7 +30,7 @@ find_file_string () {
     filename="%f"
     format="'${PWD}'/'$directory_name'/'$filename'\n"
     binary_file="Binary file"
-    remove_current_dir="s|'${PWD}'/||g"
+    remove_current_dir="s|${PWD}/||g"
 
     if [ -z "$extension" ]; then
         # grep -C = context
