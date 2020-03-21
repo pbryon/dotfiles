@@ -16,4 +16,5 @@ full_file="$path/$file"
 
 echo Saving VSCode extensions...
 code --list-extensions > $full_file
-echo "--> extensions saved to $full_file"
+echo "--> extensions saved to $full_file:"
+cat "$full_file"
