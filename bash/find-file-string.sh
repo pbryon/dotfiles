@@ -35,7 +35,7 @@ find_file_string () {
     if [ -z "$extension" ]; then
         # grep -C = context
         find . -type f -printf "$format" \
-        | xargs grep -"$ignore_case"n "$pattern" -C 2 2>/dev/null \
+        | xargs grep -"$ignore_case"n "$pattern" -C 2 --color 2>/dev/null \
         | grep -v "$binary_file" \
         | sed -e "$remove_current_dir"
  
@@ -48,13 +48,13 @@ find_file_string () {
         extension=${extension%!}
         find . -type f -printf "$format" \
         | grep -v "$extension'$" \
-        | xargs grep -"$ignore_case"n "$pattern" -C 2 2>/dev/null \
+        | xargs grep -"$ignore_case"n "$pattern" -C 2 --color 2>/dev/null \
         | grep -v "$binary_file" \
         | sed -e "$remove_current_dir"
     else
         find . -type f -printf "$format" \
         | grep "$extension'$" \
-        | xargs grep -"$ignore_case"n "$pattern" -C 2 2>/dev/null \
+        | xargs grep -"$ignore_case"n "$pattern" -C 2 --color 2>/dev/null \
         | grep -v "$binary_file" \
         | sed -e "$remove_current_dir"
 
