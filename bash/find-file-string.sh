@@ -26,16 +26,13 @@ find_file_string () {
         ignore_case=""
     fi
 
-    directory_name="%h"
-    filename="%f"
-    format="'${PWD}'/'$directory_name'/'$filename'\n"
     binary_file="Binary file"
     remove_current_dir="s|${PWD}/||g"
 
     if [ -z "$extension" ]; then
         # grep -C = context
-        find . -type f -printf "$format" \
-        | xargs grep -"$ignore_case"n "$pattern" -C 2 --color=always 2>/dev/null \
+        find . -type f -print0 \
+        | xargs -0 grep -"$ignore_case"n "$pattern" -C 2 --color=always 2>/dev/null \
         | grep -v "$binary_file" \
         | sed -e "$remove_current_dir"
  
@@ -46,15 +43,15 @@ find_file_string () {
     if [[ "$extension" =~ !$ ]]; then
         # remove bang
         extension=${extension%!}
-        find . -type f -printf "$format" \
-        | grep -v "$extension'$" \
-        | xargs grep -"$ignore_case"n "$pattern" -C 2 --color=always 2>/dev/null \
+        find . -type f -print0 \
+        | grep --null-data -v "$extension$" \
+        | xargs -0 grep -"$ignore_case"n "$pattern" -C 2 --color=always 2>/dev/null \
         | grep -v "$binary_file" \
         | sed -e "$remove_current_dir"
     else
-        find . -type f -printf "$format" \
-        | grep "$extension'$" \
-        | xargs grep -"$ignore_case"n "$pattern" -C 2 --color=always 2>/dev/null \
+        find . -type f -print0 \
+        | grep --null-data "$extension$" \
+        | xargs -0 grep -"$ignore_case"n "$pattern" -C 2 --color=always 2>/dev/null \
         | grep -v "$binary_file" \
         | sed -e "$remove_current_dir"
 
