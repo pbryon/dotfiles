@@ -12,6 +12,7 @@ Yet another dotfiles repo. Mine might be different in the following aspects.
   * [gitall](#gitall)
   * [git log](#git-log)
   * [git-reset-to](#git-reset-to)
+  * [git-refork](#git-refork)
 * [R profile](#rprofile.site)
 * [Git hooks](#git-hooks)
 * [Scripts](#scripts)
@@ -171,6 +172,19 @@ Usage:
 $ grt
 Usage: grt <target commit>
 ```
+
+#### git refork
+
+**Source**: `git-refork.sh`
+
+Rebases this forked repository on the upstream branch
+
+Usage:
+```
+$ refork <upstream remote>
+```
+
+If left blank, the upstream remote will default to "upstream"
 
 #### school
 
