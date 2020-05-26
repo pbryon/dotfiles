@@ -28,4 +28,4 @@ alias q=exit
 alias ll="ls -la"
 
 if [ $TILIX_ID ] || [ $VTE_VERSION ] ; then source /etc/profile.d/vte.sh; fi # Ubuntu Budgie END
-
+cd $REPO
