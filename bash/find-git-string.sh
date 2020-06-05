@@ -52,7 +52,12 @@ find_git_string () {
 
 find_merge_conflict () {
     local conflicts="HEAD|<<<<<|>>>>>"
+    
+    local map_files="\.map"
+    local minified_files="\.min\."
+
     git ls-files \
+    | grep -v -P "${map_files}|${minified_files}" \
     | xargs grep -n -P "$conflicts" -C 2 --color=always 2>/dev/null \
     | grep -v "Binary file"
 }
