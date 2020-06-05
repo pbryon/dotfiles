@@ -1,4 +1,6 @@
 git_find="gf"
+git_find_conflict="gfc"
+
 find_git_string () {
     if [ -z "$1" ]; then
         echo Usage:
@@ -48,4 +50,12 @@ find_git_string () {
     fi
 }
 
+find_merge_conflict () {
+    local conflicts="HEAD|<<<<<|>>>>>"
+    git ls-files \
+    | xargs grep -n -P "$conflicts" -C 2 --color=always 2>/dev/null \
+    | grep -v "Binary file"
+}
+
 alias $git_find=find_git_string
+alias $git_find_conflict=find_merge_conflict

@@ -8,6 +8,7 @@ Yet another dotfiles repo. Mine might be different in the following aspects.
   * [repo alias](#repo-alias)
   * [find file string](#find_file_string)
   * [find git string](#find_git_string)
+  * [find merge conflict]("#find_merge_conflict)
   * [git aliases](#git-aliases)
   * [gitall](#gitall)
   * [git log](#git-log)
@@ -121,6 +122,19 @@ Examples:
 | gf foo | Looks for case insensitive string "foo" |
 | gf foo! | Looks for the case sensitive string "foo" |
 | gf cs foo | Looks for the case insensitive string in all `.cs` files |
+
+#### find_merge_conflict()
+
+**Source**: `find-git-string.sh`
+
+**Default alias**: gfc (configurable in the source file)
+
+Finds merge conflicts based on "HEAD", "<<<<" and ">>>>"
+
+Usage:
+```
+gfc
+```
 
 #### git aliases
 
