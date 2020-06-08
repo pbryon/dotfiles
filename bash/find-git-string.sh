@@ -52,14 +52,21 @@ find_git_string () {
 
 find_merge_conflict () {
     local conflicts="HEAD|<<<<<|>>>>>"
-    
     local map_files="\.map"
     local minified_files="\.min\."
 
-    git ls-files \
-    | grep -v -P "${map_files}|${minified_files}" \
-    | xargs grep -n -P "$conflicts" -C 2 --color=always 2>/dev/null \
-    | grep -v "Binary file"
+    if [ -z "$1" ]; then
+        git ls-files \
+        | grep -v -P "${map_files}|${minified_files}" \
+        | xargs grep -n -P "$conflicts" --files-with-matches 2>/dev/null \
+        | grep -v "Binary file" \
+        | uniq
+    else
+        git ls-files \
+        | grep -v -P "${map_files}|${minified_files}" \
+        | xargs grep -n -P "$conflicts" -C 2 --color=always 2>/dev/null \
+        | grep -v "Binary file"
+    fi
 }
 
 alias $git_find=find_git_string
