@@ -57,15 +57,22 @@ find_merge_conflict () {
 
     if [ -z "$1" ]; then
         git ls-files \
-        | grep -v -P "${map_files}|${minified_files}" \
         | xargs grep -n -P "$conflicts" --files-with-matches 2>/dev/null \
         | grep -v "Binary file" \
         | uniq
-    else
+    elif [[ "$1" =~ "-v" ]]; then
         git ls-files \
         | grep -v -P "${map_files}|${minified_files}" \
         | xargs grep -n -P "$conflicts" -C 2 --color=always 2>/dev/null \
         | grep -v "Binary file"
+    else
+        echo Usage:
+        echo "  $git_find_conflict [OPTIONS]"
+        echo
+        echo Options:
+        echo "  -v          Verbose: shows merge conflict context."
+        echo "              Also ignores minified and .map files"
+        echo
     fi
 }
 
