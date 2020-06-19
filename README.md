@@ -133,7 +133,8 @@ Finds merge conflicts based on "HEAD", "<<<<" and ">>>>"
 
 Usage:
 ```
-gfc
+gfc         Shows files with merge conflict indicators
+gfc -v      Show conflict context (grep -C)
 ```
 
 #### git aliases
