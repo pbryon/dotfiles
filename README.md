@@ -8,7 +8,7 @@ Yet another dotfiles repo. Mine might be different in the following aspects.
   * [repo alias](#repo-alias)
   * [find file string](#find_file_string)
   * [find git string](#find_git_string)
-  * [find merge conflict]("#find_merge_conflict)
+  * [find merge conflict](#find_merge_conflict)
   * [git aliases](#git-aliases)
   * [gitall](#gitall)
   * [git log](#git-log)
