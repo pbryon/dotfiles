@@ -147,10 +147,14 @@ Contains a bunch of shorthand git aliases:
 | --- | --- |
 | gaa | `git add --all` |
 | gac | `git add --all && git commit -v` |
+| gai | `git add --interactive` |
 | gb | `git branch -avv` |
 | gcp | `git cherry-pick` |
+| gmt | `git mergetool` |
 | gs | `git status` |
 | gsf | `git fetch && git status` |
+| grc | `git rebase --continue` |
+| grs | `git rebase --skip` |
 
 #### gitall()
 
