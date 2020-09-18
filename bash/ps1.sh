@@ -16,11 +16,18 @@ current_git_branch () {
 dir_or_home () {
      local repo_relative=${PWD##$REPO}
      local home_relative=${PWD##$HOME}
+     local tfs_relative=${PWD##$TFS}
      if [[ "$repo_relative" != "$PWD" ]]; then
         if [ "$repo_relative" ]; then
             echo -e $bold$yellow$repo_relative$reset | sed -e 's/\///'
         else
             echo -e ${bold}${yellow}REPO${reset}@$host
+        fi
+    elif [[ "$tfs_relative" != "$PWD" ]]; then
+        if [ "$tfs_relative" ]; then
+            echo -e $bold$yellow$tfs_relative$reset | sed -e 's/\///'
+        else
+            echo -e ${bold}${yellow}TFS${reset}@$host
         fi
     elif [[ "$home_relative" != "$PWD" ]]; then
         echo -e ${bold}${yellow}HOME${reset}${home_relative}@$host

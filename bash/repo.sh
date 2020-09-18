@@ -14,6 +14,8 @@ read_config () {
             continue
         elif [[ "$line" =~ ^REPO$sep[[:space:]]*(.+) ]]; then
             export REPO=${BASH_REMATCH[1]};
+        elif [[ "$line" =~ ^TFS$sep[[:space:]]*(.+) ]]; then
+            export TFS=${BASH_REMATCH[1]};
         fi
     done
     IFS=${OLD_IFS}
@@ -27,6 +29,10 @@ goto_repo () {
     fi
 }
 
+goto_tfs () {
+    cd "$TFS/$1"
+}
+
 complete_repo () {
     local IFS=$'\n'
     local tmp=( $(compgen -d -W "$(ls "$REPO")" -- "${COMP_WORDS[$COMP_CWORD]}" ))
@@ -35,4 +41,5 @@ complete_repo () {
 
 read_config
 alias repo=goto_repo
+alias tfs=goto_tfs
 complete -F complete_repo repo
