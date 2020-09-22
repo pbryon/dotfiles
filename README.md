@@ -14,6 +14,8 @@ Yet another dotfiles repo. Mine might be different in the following aspects.
   * [git log](#git-log)
   * [git-reset-to](#git-reset-to)
   * [git-refork](#git-refork)
+* [PowerShell functions](#powershell-functions)
+  * [tail](#tail)
 * [R profile](#rprofile.site)
 * [Git hooks](#git-hooks)
 * [Scripts](#scripts)
@@ -210,6 +212,22 @@ If left blank, the upstream remote will default to "upstream"
 Probably of no use to you. Aliases for my school repo.
 
 The aliases only get set when you've got a `$SCHOOL` variable in your `.bashrc.conf`
+
+## PowerShell functions
+
+These can be found in `./ps`
+
+#### tail
+
+**Source**: `tail.ps1`
+
+Mimics UNIX `tail -f`
+
+Usage:
+
+```
+tail <file>
+```
 
 ## Rprofile.site
 
