@@ -150,6 +150,7 @@ Contains a bunch of shorthand git aliases:
 | gaa | `git add --all` |
 | gac | `git add --all && git commit -v` |
 | gai | `git add --interactive` |
+| gane | `git commit --amend --no-edit` |
 | gb | `git branch -avv` |
 | gcp | `git cherry-pick` |
 | gmt | `git mergetool` |
