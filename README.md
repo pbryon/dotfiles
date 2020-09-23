@@ -230,6 +230,14 @@ Usage:
 tail <file>
 ```
 
+#### newest
+
+Lists the newest file in a directory.
+
+**Source**: `newest.ps1`
+
+Usage: `newest`
+
 ## Rprofile.site
 
 The profile loaded for R Studio.
