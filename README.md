@@ -7,6 +7,7 @@ Yet another dotfiles repo. Mine might be different in the following aspects.
 * Bash aliases
   * [repo alias](#repo-alias)
   * [find file string](#find_file_string)
+  * [not](#not)
   * [find git string](#find_git_string)
   * [find merge conflict](#find_merge_conflict)
   * [git aliases](#git-aliases)
@@ -98,6 +99,17 @@ Examples:
 | ff foo | Looks for case insensitive string "foo" |
 | ff foo! | Looks for the case sensitive string "foo" |
 | ff cs foo | Looks for the case insensitive string in all `.cs` files |
+
+#### not()
+
+**Source**: `find-file-string.sh`
+
+```bash
+Excludes the given pattern and filters out empty lines
+
+Usage:
+not <pattern>
+```
 
 #### find_git_string()
 

@@ -1,4 +1,26 @@
 file_find="ff"
+not_like="not"
+not_blank="not_empty"
+
+not () {
+    if [ -z "$1" ]; then
+        echo Excludes the given pattern and filters out empty lines
+        echo
+        echo Usage:
+        echo "$not_like <pattern>"
+        echo
+        return 1
+    fi
+
+    pattern=$1
+    grep -v $pattern | not_empty
+}
+
+not_empty () {
+    grep_with_context_empty="\-\-"
+    grep -v $grep_with_context_empty | grep "\S"
+}
+
 find_file_string () {
     if [ -z "$1" ]; then
         echo Usage:
@@ -59,3 +81,5 @@ find_file_string () {
 }
 
 alias $file_find=find_file_string
+alias $not_like=not
+alias $not_blank=not_empty
