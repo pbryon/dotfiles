@@ -13,7 +13,7 @@ not () {
     fi
 
     pattern=$1
-    grep -v $pattern | not_empty
+    grep -vi $pattern | not_empty
 }
 
 not_empty () {
