@@ -2,26 +2,35 @@
 
 Yet another dotfiles repo. Mine might be different in the following aspects.
 
-* [.bashrc](#bashrc)
-* [PS1](#ps1)
-* Bash aliases
-  * [repo alias](#repo-alias)
-  * [find file string](#find_file_string)
-  * [not](#not)
-  * [find git string](#find_git_string)
-  * [find merge conflict](#find_merge_conflict)
-  * [git aliases](#git-aliases)
-  * [gitall](#gitall)
-  * [git log](#git-log)
-  * [git-reset-to](#git-reset-to)
-  * [git-refork](#git-refork)
-* [PowerShell functions](#powershell-functions)
-  * [tail](#tail)
-* [R profile](#rprofile.site)
-* [Git hooks](#git-hooks)
-* [Scripts](#scripts)
-* [VS Code](#vscode)
-* [Web files](#web-directory)
+- [dotfiles](#dotfiles)
+  - [.bashrc](#bashrc)
+    - [read_config](#read_config)
+    - [load_import_files](#load_import_files)
+      - [PS1](#ps1)
+      - [repo alias](#repo-alias)
+      - [find_file_string()](#find_file_string)
+      - [not()](#not)
+      - [find_git_string()](#find_git_string)
+      - [find_merge_conflict()](#find_merge_conflict)
+      - [git aliases](#git-aliases)
+      - [gitall()](#gitall)
+      - [git log()](#git-log)
+      - [git reset to](#git-reset-to)
+      - [git refork](#git-refork)
+      - [git tags](#git-tags)
+      - [school](#school)
+  - [PowerShell functions](#powershell-functions)
+      - [tail](#tail)
+      - [newest](#newest)
+  - [Rprofile.site](#rprofilesite)
+  - [Git hooks](#git-hooks)
+  - [Scripts](#scripts)
+    - [touchpad.sh](#touchpadsh)
+    - [update.sh](#updatesh)
+  - [VSCode](#vscode)
+    - [`save-extensions.sh`](#save-extensionssh)
+    - [`update-extensions.sh`](#update-extensionssh)
+  - [web directory](#web-directory)
 
 ## .bashrc
 
@@ -219,6 +228,23 @@ $ refork <upstream remote>
 ```
 
 If left blank, the upstream remote will default to "upstream"
+
+#### git tags
+
+**Source**: `git-tags.sh`
+
+Show all defined tags and their related commits.
+
+Usage:
+
+```shell
+$ git-tags
+
+sprint0         Finish sprint 0
+  0223702   Pieter Bryon            2020-10-11 17:10:04 +0200         Add TODOs
+sprint1         Finish sprint 1
+  79ac3c6   vangorpdirk             2020-11-07 14:23:26 +0100          #5 create personal profile page
+```
 
 #### school
 

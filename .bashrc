@@ -13,7 +13,7 @@ load_import_files () {
 # used by repo.sh and school.sh
 export BASHRC_CONFIG="$HOME/.bashrc.conf"
 export BASHRC_CONFIG_SEPARATOR=":"
-import_files=(ps1 repo git-aliases git-log git-all find-file-string find-git-string git-is-merged git-reset-to git-refork school)
+import_files=(ps1 repo git-aliases git-log git-all find-file-string find-git-string git-is-merged git-reset-to git-refork git-tags school)
 load_import_files
 
 # variables:
@@ -29,3 +29,7 @@ alias ll="ls -la"
 
 if [ $TILIX_ID ] || [ $VTE_VERSION ] ; then source /etc/profile.d/vte.sh; fi # Ubuntu Budgie END
 cd $REPO
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
