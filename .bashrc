@@ -1,12 +1,7 @@
 load_import_files () {
-    for file in ${import_files[@]}; do
-        path="$(dirname $BASH_SOURCE)/bash"
-        file=$file.sh
-        if [ -f "$path/$file" ]; then
-            . $path/$file
-        else
-            echo "-> missing source: $path/$file"
-        fi
+    path="$(dirname $BASH_SOURCE)/bash"
+    for file in $(ls $path); do
+        . $path/$file
     done
 }
 
@@ -14,7 +9,6 @@ load_import_files () {
 export BASHRC_CONFIG="$HOME/.bashrc.conf"
 export BASHRC_CONFIG_SEPARATOR=":"
 
-import_files=(ps1 repo git-aliases git-log git-all find-file-string find-git-string git-is-merged git-reset-to git-refork git-tags school)
 load_import_files
 
 # variables:
