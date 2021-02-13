@@ -1,7 +1,7 @@
 # git-related: aliases
 alias changes="git status -vv | less -r"
 alias gaa="git add --all"
-alias gac="git add --all && git commit -v"
+alias gac="git commit --all --verbose"
 alias gai="git add --interactive"
 alias gane="git commit --amend --no-edit"
 alias gb="git branch -avv"

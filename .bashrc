@@ -13,6 +13,7 @@ load_import_files () {
 # used by repo.sh and school.sh
 export BASHRC_CONFIG="$HOME/.bashrc.conf"
 export BASHRC_CONFIG_SEPARATOR=":"
+
 import_files=(ps1 repo git-aliases git-log git-all find-file-string find-git-string git-is-merged git-reset-to git-refork git-tags school)
 load_import_files
 
@@ -20,6 +21,7 @@ load_import_files
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
 export EDITOR=vim
+alias pip="python -m pip"
 
 # directories:
 alias home="cd $HOME"
