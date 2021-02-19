@@ -1,4 +1,5 @@
 file_find="ff"
+file_name="fn"
 not_like="not"
 not_blank="not_empty"
 
@@ -104,5 +105,6 @@ find_file_string () {
 
 read_config
 alias $file_find=find_file_string
+alias $file_name='find . -type f -name '
 alias $not_like=not
 alias $not_blank=not_empty

@@ -11,6 +11,7 @@ Yet another dotfiles repo. Mine might be different in the following aspects.
       - [find_file_string()](#find_file_string)
       - [not()](#not)
       - [find_git_string()](#find_git_string)
+      - [find_name](#find-name)
       - [find_merge_conflict()](#find_merge_conflict)
       - [git aliases](#git-aliases)
       - [gitall()](#gitall)
@@ -41,6 +42,7 @@ My `.bashrc` uses a config file (`.bashrc.conf`) to read config parameters:
 * *REPO*: the directory you clone repositories to
 * *GIT*: the drectory used for local machine remotes
 * *SCHOOL*: the directory where I keep my school files
+* *FIND_FILE_IGNORE*: regex of folders to ignore when using [find_file_string](#find_file_string) and [find_git_string](#find_git_string)
 
 These are then read in the `read_config()` functions in [repo.sh](#repo-alias) and [school.sh](#school) to export environment variables.
 
@@ -108,6 +110,20 @@ Examples:
 | ff foo | Looks for case insensitive string "foo" |
 | ff foo! | Looks for the case sensitive string "foo" |
 | ff cs foo | Looks for the case insensitive string in all `.cs` files |
+
+#### find_name
+
+**Source**: `find-file-string.sh`
+
+**Default alias**: fn (configurable in the source file)
+
+Finds a file in the current direcotry and subdirectories by name
+
+Usage:
+
+```
+fn <pattern>
+```
 
 #### not()
 
