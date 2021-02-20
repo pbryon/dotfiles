@@ -31,7 +31,7 @@ find_git_string () {
     if [ -z "$extension" ]; then
         # grep -C = context
         git ls-files \
-        | grep -ev $FIND_FILE_IGNORE \
+        | grep -v -E $FIND_FILE_IGNORE \
         | xargs grep -"$ignore_case"n "$pattern" -C 2 --color=always 2>/dev/null
         return 0
     fi
@@ -41,13 +41,13 @@ find_git_string () {
         # remove bang
         extension=${extension%!}
         git ls-files \
-        | grep -ev $FIND_FILE_IGNORE \
+        | grep -v -E $FIND_FILE_IGNORE \
         | grep -v "$extension$" \
         | xargs grep -"$ignore_case"n "$pattern" -C 2 --color=always 2>/dev/null \
         | grep -v "Binary file"
     else
         git ls-files \
-        | grep -ev $FIND_FILE_IGNORE \
+        | grep -v -E $FIND_FILE_IGNORE \
         | grep "${extension}$" \
         | xargs grep -"$ignore_case"n "$pattern" -C 2 --color=always 2>/dev/null \
         | grep -v "Binary file"
