@@ -74,7 +74,7 @@ find_file_string () {
     if [ -z "$extension" ]; then
         # grep -C = context
         find . -type f -print0 \
-        | grep --null-data -v -E $FIND_FILE_IGNORE \
+        | grep --null-data -ev $FIND_FILE_IGNORE \
         | xargs -0 grep -"$ignore_case"n "$pattern" -C 2 --color=always 2>/dev/null \
         | grep -v "$binary_file" \
         | sed -e "$remove_current_dir"
@@ -87,14 +87,14 @@ find_file_string () {
         # remove bang
         extension=${extension%!}
         find . -type f -print0 \
-        | grep --null-data -v -E $FIND_FILE_IGNORE \
+        | grep --null-data -ev $FIND_FILE_IGNORE \
         | grep --null-data -v "$extension$" \
         | xargs -0 grep -"$ignore_case"n "$pattern" -C 2 --color=always 2>/dev/null \
         | grep -v "$binary_file" \
         | sed -e "$remove_current_dir"
     else
         find . -type f -print0 \
-        | grep --null-data -v -E $FIND_FILE_IGNORE \
+        | grep --null-data -ev $FIND_FILE_IGNORE \
         | grep --null-data "$extension$" \
         | xargs -0 grep -"$ignore_case"n "$pattern" -C 2 --color=always 2>/dev/null \
         | grep -v "$binary_file" \
