@@ -16,6 +16,8 @@ read_config () {
             export REPO=${BASH_REMATCH[1]};
         elif [[ "$line" =~ ^TFS$sep[[:space:]]*(.+) ]]; then
             export TFS=${BASH_REMATCH[1]};
+        elif [[ "$line" =~ ^WORK_DIR$sep[[:space]]*(.+) ]]; then
+            export WORK_DIR=${BASH_REMATCH[1]};
         fi
     done
     IFS=${OLD_IFS}

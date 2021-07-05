@@ -1,11 +1,8 @@
-export WORK_DIR="radahr"
-
 work_dir () {
-    base_path="${REPO}/${WORK_DIR}"
     if [ -z "$1" ]; then
-        echo "$base_path"
+        echo "$WORK_DIR"
     else
-        echo "$base_path/$1"
+        echo "$WORK_DIR/$1"
     fi
 }
 
