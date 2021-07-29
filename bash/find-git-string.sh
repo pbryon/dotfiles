@@ -55,7 +55,7 @@ find_git_string () {
 }
 
 find_merge_conflict () {
-    local conflicts="HEAD|<<<<<|>>>>>"
+    local conflicts="HEAD\s|<<<<<|>>>>>"
     local map_files="\.map"
     local minified_files="\.min\."
 

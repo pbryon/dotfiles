@@ -8,13 +8,14 @@ is_branch_merged () {
     OLD_IFS="$IFS"
     IFS=$'\n'
 
-
     log_branch_status Branch Commit Status
     log_branch_status "------" "------" "------"
 
     branches=$(git branch -a --color=never | grep remotes/origin)
     for branch in $branches; do
         if [[ $branch =~ master ]]; then
+            continue
+        elif [[ $branch =~ main ]]; then
             continue
         fi
 

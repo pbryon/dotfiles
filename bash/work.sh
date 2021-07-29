@@ -6,6 +6,11 @@ work_dir () {
     fi
 }
 
+goto_work() {
+    subpath=$(work_dir "source")
+    cd "$subpath"
+}
+
 goto_web () {
    subpath=$(work_dir "source/radahr-web-app-js")
    cd "$subpath"
@@ -16,5 +21,6 @@ goto_bff () {
     cd "$subpath"
 }
 
+alias work=goto_work
 alias web=goto_web
 alias bff=goto_bff

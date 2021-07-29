@@ -18,6 +18,8 @@ read_config () {
             export TFS=${BASH_REMATCH[1]};
         elif [[ "$line" =~ ^WORK_DIR$sep[[:space:]]*(.+) ]]; then
             export WORK_DIR=${BASH_REMATCH[1]};
+        elif [[ "$line" =~ ^FIND_FILE_IGNORE$sep[[:space:]]*(.+) ]]; then
+            export FIND_FILE_IGNORE=${BASH_REMATCH[1]};
         fi
     done
     IFS=${OLD_IFS}
