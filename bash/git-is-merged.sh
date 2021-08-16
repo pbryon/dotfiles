@@ -12,8 +12,10 @@ is_branch_merged () {
     log_branch_status "------" "------" "------"
 
     branches=$(git branch -a --color=never | grep remotes/origin)
+    main_branch="main"
     for branch in $branches; do
         if [[ $branch =~ master ]]; then
+            main_branch="master"
             continue
         elif [[ $branch =~ main ]]; then
             continue
@@ -35,7 +37,7 @@ is_branch_merged () {
             continue
         fi
 
-        local any_commits=$(git log remotes/origin/master | grep $latest_commit)
+        local any_commits=$(git log remotes/origin/$main_branch | grep $latest_commit)
         if [ -z "$any_commits" ]; then
             log_branch_status $branch $latest_commit "not merged"
         else
