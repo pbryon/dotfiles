@@ -27,6 +27,8 @@
     skipped = ! git ls-files -v . | grep ^S
     squash = merge --squash
     unskip = update-index --no-skip-worktree
+    fresh = ! git pull && git checkout -b
+    yank = ! git reset --hard && git pull
 [push]
 	default = simple
 [commit]
@@ -38,3 +40,5 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[credential]
+    helper = store
