@@ -13,16 +13,16 @@
 [status]
     showUntrackedFiles=all
 [alias]
-    ahead = rev-list --count HEAD ^master
+    ahead = !git rev-list --count HEAD ^${MAIN_BRANCH} || echo '> Try MAIN_BRANCH=<branch> git ahead'
     back = ! git checkout - 2>/dev/null || echo No previous branch!
-    behind = rev-list --count master ^HEAD
+    behind = ! git rev-list --count ${MAIN_BRANCH} ^HEAD || echo '> Try MAIN_BRANCH=<branch> git behind'
     delete = branch -d
     dropremote = push origin --delete
     history = log -p --follow
     latest = show HEAD
     new = checkout -b
     rename = branch -m
-    resetfile = checkout origin/master
+    resetfile = ! git checkout \"origin/${MAIN_BRANCH}\" \"$1\" || echo '> Try MAIN_BRANCH=<branch> git resetfile' >&2
     skip = update-index --skip-worktree
     skipped = ! git ls-files -v . | grep ^S
     squash = merge --squash

@@ -1,5 +1,6 @@
 #!/bin/bash
 script=$BASH_SOURCE
+export MAIN_BRANCH=master
 read_config () {
     local file="$BASHRC_CONFIG"
     OLD_IFS="$IFS"
@@ -20,6 +21,8 @@ read_config () {
             export WORK_DIR=${BASH_REMATCH[1]};
         elif [[ "$line" =~ ^FIND_FILE_IGNORE$sep[[:space:]]*(.+) ]]; then
             export FIND_FILE_IGNORE=${BASH_REMATCH[1]};
+        elif [[ "$line" =~ ^MAIN_BRANCH$sep[[:space:]]*(.*) ]]; then
+            export MAIN_BRANCH=${BASH_REMATCH[1]};
         fi
     done
     IFS=${OLD_IFS}
