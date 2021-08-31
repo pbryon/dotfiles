@@ -6,6 +6,7 @@
 	autocrlf = input
 	excludesfile = /home/.gitignore
 	safecrlf = false
+	filemode = false
 [color]
     ui=always
 [log]
