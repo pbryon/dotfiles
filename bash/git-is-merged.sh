@@ -1,5 +1,6 @@
 git_is_merged="gim"
 is_branch_merged () {
+    git fetch >/dev/null
     if [[ $1 == "debug" ]]; then
        debug="yes"
     else
@@ -11,7 +12,7 @@ is_branch_merged () {
     log_branch_status Branch Commit Status
     log_branch_status "------" "------" "------"
 
-    branches=$(git branch -a --color=never | grep remotes/origin)
+    branches=$(git branch --remotes --all --color=never)
     main_branch="main"
     for branch in $branches; do
         if [[ $branch =~ master ]]; then
@@ -21,15 +22,16 @@ is_branch_merged () {
             continue
         fi
 
-        branch=$(echo -e "$branch" | tr -d '[:space:]')
-        commit_cmd="git log -n 1 --pretty=format:%h $branch"
+        branch=$(echo -e "$branch" | tr -d '[:space:]' | sed 's/remotes\///')
+        commit_cmd="git log -n 1 --pretty=format:oneline $branch"
         if [ "$debug" ]; then
-            echo Command: $commit_cmd
+            echo "> Branch: $branch"
+            echo "> Commit command: $commit_cmd"
         fi
 
-        latest_commit=$(git log -n 1 --pretty=format:%h $branch)
+        latest_commit=$(git log -n 1 --pretty=format:"%h %s" $branch)
         if [ "$debug" ]; then
-            echo "Latest commit on $branch: $latest_commit"
+            echo "> Latest commit on $branch: $latest_commit"
         fi
 
         if [ -z "$latest_commit" ]; then
@@ -37,8 +39,12 @@ is_branch_merged () {
             continue
         fi
 
-        local any_commits=$(git log remotes/origin/$main_branch | grep $latest_commit)
-        if [ -z "$any_commits" ]; then
+        local is_merged=$(git branch --remotes --merged HEAD | grep $branch)
+        if [ "$debug" ]; then
+            echo "> is merged: $is_merged"
+        fi
+
+        if [ -z "$is_merged" ]; then
             log_branch_status $branch $latest_commit "not merged"
         else
             log_branch_status $branch $latest_commit "merged"
@@ -49,7 +55,7 @@ is_branch_merged () {
 }
 
 log_branch_status() {
-    printf "%-80s    %s    %s\n" $1 $2 ${3:-""}
+    printf "%-70s    %-10s    %s\n" $1 ${3:-""} $2
 }
 
 
