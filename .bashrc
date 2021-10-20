@@ -9,7 +9,21 @@ load_import_files () {
 export BASHRC_CONFIG="$HOME/.bashrc.conf"
 export BASHRC_CONFIG_SEPARATOR=":"
 
-import_files=(ps1 repo git-aliases git-log git-all find-file-string find-git-string git-is-merged git-reset-to git-refork git-tags work)
+import_files=(
+    ps1
+    repo
+    git-aliases
+    git-log
+    git-all
+    find-file-string
+    find-git-string
+    git-is-merged
+    git-reset-to
+    git-refork
+    git-tags
+    git_diff
+    work
+)
 load_import_files
 
 # variables:
