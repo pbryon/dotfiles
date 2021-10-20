@@ -28,7 +28,8 @@ diff_file_with_main () {
     fi
 
     branch=$(get_main_branch)
-    git diff "origin/$branch" "$1"
+    delim=" "
+    git diff "origin/$branch" --src-prefix "${branch^^}$delim" --dst-prefix "LOCAL$delim" "$1"
 }
 
 alias $git_diff_main=diff_file_with_main
