@@ -6,16 +6,17 @@ get_main_branch () {
     for branch in "${main_branches[@]}"; do
         exists=`git rev-parse --verify $branch 2>/dev/null` 
         if [ "$exists" ]; then
-            echo $branch
+            echo "origin/$branch"
             break
         fi
     done
-    ""
 }
 
 diff_files_with_main () {
     branch=$(get_main_branch)
-    git diff $branch --name-only
+    start_from="$1"
+    git diff $branch --name-only \
+    | grep --after-context 5000 --max-count 1 --extended-regexp "$start_from"
 }
 
 diff_file_with_main () {
