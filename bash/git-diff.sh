@@ -6,7 +6,7 @@ get_main_branch () {
     for branch in "${main_branches[@]}"; do
         exists=`git rev-parse --verify $branch 2>/dev/null` 
         if [ "$exists" ]; then
-            echo "origin/$branch"
+            echo "$branch"
             break
         fi
     done
