@@ -5,7 +5,7 @@ find_git_string () {
     default_context="2"
     if [ -z "$1" ]; then
         echo Usage:
-        echo "$git_find [extension] <pattern> <context>"
+        echo "$git_find [extension] <pattern> [<context>]"
         echo
         echo With no extension, it will search all files.
         echo

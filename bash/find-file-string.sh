@@ -42,23 +42,40 @@ not_empty () {
 }
 
 find_file_string () {
+    default_context="2"
     if [ -z "$1" ]; then
         echo Usage:
-        echo "$file_find [extension] <pattern>"
+        echo "$file_find [extension] <pattern> [<context>]"
         echo
         echo With no extension, it will search all files.
         echo
         echo "If the extension ends with a bang (!), it is excluded instead"
         echo "If the pattern ends with a bang (!), it's case sensitive"
         echo
-        return 1
+        echo The default context is $default_context lines before/after a match
+        echo
+    return 1
     fi
 
+    arg_count=$#
     extension=$1
     pattern=$2
-    if [ -z "$pattern" ]; then
+    context=${3:-$default_context}
+
+    if [ $arg_count = 1 ]; then
         extension=""
         pattern=$1
+        context=$default_context
+    elif [ $arg_count = 2 ]; then
+        if [[ "$2" =~ ^[0-9]+$ ]]; then      
+            extension=""
+            pattern=$1
+            context=${2:-$default_context}
+        else
+            extension=$1
+            pattern=$2
+            context=$default_context
+        fi
     fi
 
     ignore_case="i"
@@ -75,7 +92,7 @@ find_file_string () {
         # grep -C = context
         find . -type f -print0 \
         | grep --null-data -v -E $FIND_FILE_IGNORE \
-        | xargs -0 grep -"$ignore_case"n "$pattern" -C 2 --color=always 2>/dev/null \
+        | xargs -0 grep -"$ignore_case"n "$pattern" -C $context --color=always 2>/dev/null \
         | grep -v "$binary_file" \
         | sed -e "$remove_current_dir"
  
@@ -89,14 +106,14 @@ find_file_string () {
         find . -type f -print0 \
         | grep --null-data -v -E $FIND_FILE_IGNORE \
         | grep --null-data -v "$extension$" \
-        | xargs -0 grep -"$ignore_case"n "$pattern" -C 2 --color=always 2>/dev/null \
+        | xargs -0 grep -"$ignore_case"n "$pattern" -C $context --color=always 2>/dev/null \
         | grep -v "$binary_file" \
         | sed -e "$remove_current_dir"
     else
         find . -type f -print0 \
         | grep --null-data -v -E $FIND_FILE_IGNORE \
         | grep --null-data "$extension$" \
-        | xargs -0 grep -"$ignore_case"n "$pattern" -C 2 --color=always 2>/dev/null \
+        | xargs -0 grep -"$ignore_case"n "$pattern" -C $context --color=always 2>/dev/null \
         | grep -v "$binary_file" \
         | sed -e "$remove_current_dir"
 
