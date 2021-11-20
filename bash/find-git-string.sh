@@ -58,14 +58,18 @@ find_git_string () {
     if [[ "$extension" =~ !$ ]]; then
         # remove bang
         extension=${extension%!}
-        ignore_case=""
+        git ls-files \
+        | grep -v -E $FIND_FILE_IGNORE \
+        | grep -v "$extension$" \
+        | xargs grep -"$ignore_case"n "$pattern" -C $context --color=always 2>/dev/null \
+        | grep -v "Binary file"
+    else
+        git ls-files \
+        | grep -v -E $FIND_FILE_IGNORE \
+        | grep "${extension}$" \
+        | xargs grep -"$ignore_case"n "$pattern" -C $context --color=always 2>/dev/null \
+        | grep -v "Binary file"
     fi
-
-    git ls-files \
-    | grep -v -E $FIND_FILE_IGNORE \
-    | grep -v "$extension$" \
-    | xargs grep -"$ignore_case"n "$pattern" -C $context --color=always 2>/dev/null \
-    | grep -v "Binary file"
 }
 
 find_merge_conflict () {
