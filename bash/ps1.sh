@@ -17,11 +17,18 @@ dir_or_home () {
      local repo_relative=${PWD##$REPO}
      local home_relative=${PWD##$HOME}
      local tfs_relative=${PWD##$TFS}
+     local work_relative=${PWD##$WORK_DIR}
      if [[ "$repo_relative" != "$PWD" ]]; then
         if [ "$repo_relative" ]; then
             echo -e $bold$yellow$repo_relative$reset | sed -e 's/\///'
         else
             echo -e ${bold}${yellow}REPO${reset}@$host
+        fi
+     elif [[ "$work_relative" != "$PWD" ]]; then
+        if [ "$work_relative" ]; then
+            echo -e $bold$yellow$work_relative$reset | sed -e 's/\///'
+        else
+            echo -e ${bold}${yellow}WORK${reset}@$host
         fi
     elif [[ "$tfs_relative" != "$PWD" ]]; then
         if [ "$tfs_relative" ]; then

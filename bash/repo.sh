@@ -36,6 +36,14 @@ goto_repo () {
     fi
 }
 
+goto_work () {
+    cd "$WORK_DIR/$1"
+    if [ "$2" ]; then
+        echo "Running git $2..."
+        git $2
+    fi
+}
+
 goto_tfs () {
     cd "$TFS/$1"
 }
@@ -46,7 +54,15 @@ complete_repo () {
     COMPREPLY=( "${tmp[@]// /\ }" )
 }
 
+complete_work () {
+    local IFS=$'\n'
+    local tmp=( $(compgen -d -W "$(ls "$WORK_DIR")" -- "${COMP_WORDS[$COMP_CWORD]}" ))
+    COMPREPLY=( "${tmp[@]// /\ }" )
+}
+
 read_config
 alias repo=goto_repo
+alias work=goto_work
 alias tfs=goto_tfs
 complete -F complete_repo repo
+complete -F complete_work work
