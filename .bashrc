@@ -22,7 +22,7 @@ import_files=(
     git-refork
     git-tags
     git_diff
-    work
+    git_fresh_from_main
 )
 load_import_files
 
