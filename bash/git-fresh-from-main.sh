@@ -7,7 +7,7 @@ function git_fresh_from_main() {
         return 1
     fi
 
-    read -p "Reset branch '$current_branch' to commit $MAIN_BRANCH? " -n 1 -r
+    read -p "Switch branch '$current_branch' to $MAIN_BRANCH? " -n 1 -r
 	echo
 
     if [[ $REPLY =~ ^[Yy]$ ]]; then
