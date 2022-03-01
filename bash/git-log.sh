@@ -24,6 +24,27 @@ git_reflog() {
     git reflog | head -n "${1:-10}"
 }
 
+git_day() {
+    day="$1"
+    if [[ -z "$1" ]]; then
+        day=$(date +'%Y-%m-%d')
+    fi
+    for project in ./**; do
+        if [ ! -d $project ]; then
+            continue;
+        fi
+        cd $project
+        local branch=$(git branch 2>/dev/null)
+        if [ -d ".git" -a "$branch" ]; then
+            echo
+            echo "> repo '${project##./}'..."
+            git_pretty_log | grep $day
+        fi
+        cd ..
+    done
+}
+
 alias gl=git_log
 alias glp=git_pretty_log
 alias refs=git_reflog
+alias gday=git_day
