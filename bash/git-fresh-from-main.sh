@@ -7,15 +7,10 @@ function git_fresh_from_main() {
         return 1
     fi
 
-    read -p "Switch branch '$current_branch' to $MAIN_BRANCH? " -n 1 -r
-	echo
-
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-        echo Checking out $MAIN_BRANCH...
-        git checkout $MAIN_BRANCH >/dev/null 2>&1
-        echo Pulling changes...
-        git pull
-    fi
+    echo Checking out $MAIN_BRANCH...
+    git checkout $MAIN_BRANCH >/dev/null 2>&1
+    echo Pulling changes...
+    git pull
 
     read -p "Remove branch '$current_branch'? " -n 1 -r
 	echo
