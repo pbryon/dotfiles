@@ -1,6 +1,9 @@
 #!/bin/bash
 script=$BASH_SOURCE
 export MAIN_BRANCH=master
+export DEV_BRANCH=development
+export STAGING_BRANCH=staging
+
 read_config () {
     local file="$BASHRC_CONFIG"
     OLD_IFS="$IFS"

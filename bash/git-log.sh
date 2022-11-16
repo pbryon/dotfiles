@@ -48,3 +48,4 @@ alias gl=git_log
 alias glp=git_pretty_log
 alias refs=git_reflog
 alias gday=git_day
+alias me="grep Pieter"
