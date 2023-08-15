@@ -31,6 +31,7 @@
     unskip = update-index --no-skip-worktree
     fresh = ! git pull && git checkout -b
     yank = ! git reset --hard && git pull
+    tags = ! git tag --list --color=always -n99 \"$1*\"
 [push]
     default = simple
 [commit]

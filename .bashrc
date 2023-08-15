@@ -23,6 +23,7 @@ import_files=(
     git-tags
     git_diff
     git_fresh_from_main
+    myip
 )
 load_import_files
 
