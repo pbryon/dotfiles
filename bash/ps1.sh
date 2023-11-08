@@ -9,7 +9,7 @@ current_git_branch () {
             branch=${BASH_REMATCH[1]};
         fi
 
-        echo -e "${bold}${status_str} ${green}[${branch}]${reset}"
+        echo -e "${bold}${status_str} ${green}[${branch}${green}]${reset}"
     fi
 }
 
@@ -54,4 +54,4 @@ yellow="\001\033[38;5;184m\002"
 blue="\001\033[38;5;14m\002"
 host="${blue}$(uname -n)$reset"
 CURDIR='$(dir_or_home)'
-PS1="$CURDIR\$(current_git_branch)$ "
+PS1="$CURDIR\$(current_git_branch)${yellow}\$${reset} "
